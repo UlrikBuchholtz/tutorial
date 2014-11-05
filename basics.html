@@ -1,0 +1,1255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Lean Tutorial</title>
+<!-- 2014-11-05 Wed 23:14 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="[[http://leodemoura.github.io][Leonardo de Moura]]Leonardo de Moura" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel='stylesheet' href='css/tutorial.css'>
+<link rel='stylesheet' href='css/jquery-ui.css'>
+<script src='js/platform.js'></script>
+<script src='js/jquery-1.10.2.js'></script>
+<script src='js/jquery-ui.js'></script>
+<link rel='import' href='juicy-ace-editor.html'>
+<link rel='stylesheet' href='css/code.css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Lean Tutorial</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Basics: Functional Programming in Lean</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<span class="underline">Disclaimer</span>: this document is heavily based on the <a href="http://www.cis.upenn.edu/~bcpierce/sf/current/index.html">Software Foundations</a> book by
+Benjamin C. Pierce, Chris Casinghino, Marco Gaboardi, Michael Greenberg, Cătălin Hriţcu, Vilhelm Sjöberg, Brent Yorgey.
+Their book is based on the Coq system.
+We adapted it to Lean, and added Lean specific information.
+Of course, all mistakes introduced are our fault.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The functional programming style brings programming closer to
+mathematics: If a procedure or method has no side effects, then pretty
+much all you need to understand about it is how it maps inputs to
+outputs — that is, you can think of its behavior as just computing a
+mathematical function. This is one reason for the word "functional" in
+"functional programming." This direct connection between programs and
+simple mathematical objects supports both sound informal reasoning and
+formal proofs of correctness.  The other sense in which functional
+programming is "functional" is that it emphasizes the use of functions
+(or methods) as first-class values — i.e., values that can be passed
+as arguments to other functions, returned as results, stored in data
+structures, etc. The recognition that functions can be treated as data
+in this way enables a host of useful idioms, as we will see.  Other
+common features of functional languages include algebraic data types
+and pattern matching, which make it easy to construct and manipulate
+rich data structures, and sophisticated polymorphic type systems that
+support abstraction and code reuse. Lean shares all of these features.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Enumerated Types</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+One unusual aspect of Lean is that its set of built-in features is extremely small.
+For example, instead of providing the usual palette of atomic data types (booleans, integers, strings, etc.),
+Lean offers an extremely powerful mechanism for defining new data types from scratch — so powerful that all
+these familiar types arise as instances.
+Naturally, the Lean distribution comes with a standard library providing definitions of booleans, numbers,
+and many common data structures like lists. But there is nothing magic or primitive about these
+library definitions: they are ordinary user code. To see how this works, let's start with a very simple example.
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Days of the Week</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+The following declaration tells Lean that we are defining a new set of data values: a type.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">inductive day :=
+monday, tuesday, wednesday, thursday, friday, saturday, sunday
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('inductive day :=\nmonday, tuesday, wednesday, thursday, friday, saturday, sunday\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The type is called <code>day</code>, and its members are <code>monday</code>, <code>tuesday</code>, etc.
+The second line of the definition can be read "monday is a day, tuesday is a day, etc."
+We say <code>monday</code>, <code>tuesday</code>, &#x2026; are <span class="underline">constructors</span> for the inductive type <code>day</code>.
+Having defined <code>day</code>, we can write functions that operate on <code>day</code>'s.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition next_weekday (d : day) : day :=
+day.cases_on d
+  day.tuesday
+  day.wednesday
+  day.thursday
+  day.friday
+  day.monday
+  day.monday
+  day.monday
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive day :=\nmonday, tuesday, wednesday, thursday, friday, saturday, sunday\n\ndefinition next_weekday (d : day) : day :=\nday.cases_on d\n  day.tuesday\n  day.wednesday\n  day.thursday\n  day.friday\n  day.monday\n  day.monday\n  day.monday\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+One thing to note is that the argument and return types of this
+function are explicitly declared. Like most functional programming
+languages, Lean can often work out these types even if they are not
+given explicitly &#x2013; i.e., it performs some type inference &#x2013; but we include them
+to make reading easier.
+Moreover, this function was defined using the recursor <code>day.cases_on</code> automatically generated by
+Lean whenever we define a new inductive datatype. This recursor allows us to perform case-analysis
+on <code>d</code>. The <code>day.cases_on</code> above can be read as:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition next_weekday (d : day) : day :=
+day.cases_on d
+  day.tuesday    -- if d is day.monday,    then the result is day.tuesday
+  day.wednesday  -- if d is day.tuesday,   then the result is day.wednesday
+  day.thursday   -- if d is day.wednesday, then the result is day.thursday
+  day.friday     -- if d is day.thursday,  then the result is day.friday
+  day.monday     -- if d is day.friday,    then the result is day.monday
+  day.monday     -- if d is day.saturday,  then the result is day.monday
+  day.monday     -- if d is day.sunday,    then the result is day.monday
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive day :=\nmonday, tuesday, wednesday, thursday, friday, saturday, sunday\n\ndefinition next_weekday (d : day) : day :=\nday.cases_on d\n  day.tuesday    -- if d is day.monday,    then the result is day.tuesday\n  day.wednesday  -- if d is day.tuesday,   then the result is day.wednesday\n  day.thursday   -- if d is day.wednesday, then the result is day.thursday\n  day.friday     -- if d is day.thursday,  then the result is day.friday\n  day.monday     -- if d is day.friday,    then the result is day.monday\n  day.monday     -- if d is day.saturday,  then the result is day.monday\n  day.monday     -- if d is day.sunday,    then the result is day.monday\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We say <code>d</code> is the <span class="underline">major premise</span> for the recursor <code>day.cases_on</code>, and <code>day.tuesday</code>, &#x2026;, <code>day.monday</code> are the
+<span class="underline">minor premises</span>. We have a minor premise for each constructor.
+</p>
+
+<p>
+Lean declarations are organized into "namespaces". We can avoid most
+occurrences of prefix <code>day</code> by opening the namespace <code>day</code> using the
+command <code>open day</code>. Here is an alternative (and more compact)
+definition.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">open day
+
+definition next_weekday d :=
+day.cases_on d tuesday wednesday thursday friday monday monday monday
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive day :=\nmonday, tuesday, wednesday, thursday, friday, saturday, sunday\n\nopen day\n\ndefinition next_weekday d :=\nday.cases_on d tuesday wednesday thursday friday monday monday monday\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the "compressed" definition above, we also omitted the argument and return types, and let
+Lean figure out them.
+</p>
+
+<p>
+Having defined a function, we should check that it works on some
+examples. There are different ways to do this in Lean.
+First, we can use the command <code>eval</code> to evaluate a compound
+expression involving <code>next_weekday</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">eval next_weekday friday
+--  monday
+eval next_weekday (next_weekday saturday)
+-- tuesday
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive day :=\nmonday, tuesday, wednesday, thursday, friday, saturday, sunday\n\nopen day\n\ndefinition next_weekday d :=\nday.cases_on d tuesday wednesday thursday friday monday monday monday\n\neval next_weekday friday\n--  monday\neval next_weekday (next_weekday saturday)\n-- tuesday\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Second, we can record what we expect the result to be in the form of a Lean example:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">example : next_weekday (next_weekday saturday) = tuesday :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive day :=\nmonday, tuesday, wednesday, thursday, friday, saturday, sunday\n\nopen day\n\ndefinition next_weekday d :=\nday.cases_on d tuesday wednesday thursday friday monday monday monday\n\nexample : next_weekday (next_weekday saturday) = tuesday :=\nrfl\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+This declaration does two things: it makes an assertion (that the
+second weekday after saturday is tuesday). Having made the assertion,
+we show it holds by reflexivity <code>rfl</code>.  We can justify this step by
+reflexivity because the left/right hand sides of the equation are
+identical, after Lean evaluates <code>next_weekday</code>.  The symbols = and
+<code>rfl</code> are defined in the <code>logic</code> module, and is imported using the
+command <code>import logic</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Booleans</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+In a similar way, we can define the type <code>boolean</code> of booleans, with
+members <code>true</code> and <code>false</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">inductive boolean :=
+true, false
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('inductive boolean :=\ntrue, false\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Although we are rolling our own booleans here for the sake of building
+up everything from scratch, Lean does, of course, provide a default
+implementation of the booleans in its standard library, together with
+a multitude of useful functions and lemmas.
+</p>
+
+<p>
+Functions over booleans can be defined in the same way as above.
+We define them in the namespace <code>boolean</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">namespace boolean
+
+definition neg (b : boolean) : boolean :=
+cases_on b false true
+
+definition and (b1 b2 : boolean) : boolean :=
+cases_on b1 b2 false
+
+definition or (b1 b2 : boolean) : boolean :=
+cases_on b1 true b2
+
+end boolean
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\nnamespace boolean\n\ndefinition neg (b : boolean) : boolean :=\ncases_on b false true\n\ndefinition and (b1 b2 : boolean) : boolean :=\ncases_on b1 b2 false\n\ndefinition or (b1 b2 : boolean) : boolean :=\ncases_on b1 true b2\n\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the example above, we could write <code>cases_on</code> instead of <code>boolean.cases_on</code> because we
+were inside the namespace <code>boolean</code>.
+</p>
+
+<p>
+The following four "unit tests" constitute a complete specification &#x2013;
+a truth table &#x2013; for the <code>boolean.or</code> function:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">example : or true false = true :=
+rfl
+
+example : or false false = false :=
+rfl
+
+example : or false true = true :=
+rfl
+
+example : or true true = true :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\n\ndefinition neg (b : boolean) : boolean :=\ncases_on b false true\n\ndefinition and (b1 b2 : boolean) : boolean :=\ncases_on b1 b2 false\n\ndefinition or (b1 b2 : boolean) : boolean :=\ncases_on b1 true b2\n\nexample : or true false = true :=\nrfl\n\nexample : or false false = false :=\nrfl\n\nexample : or false true = true :=\nrfl\n\nexample : or true true = true :=\nrfl\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The expression <code>sorry</code> can be used to fill a hole in an
+incomplete definition or proof. We'll use them in the following
+exercises. In general, your job in the exercises is to replace
+<code>sorry</code> with real definitions or proofs.
+</p>
+</div>
+
+
+<ol class="org-ol"><li><a id="sec-1-2-2-1" name="sec-1-2-2-1"></a><span class="underline">Exercise:</span> <code>nand</code><br  /><div class="outline-text-5" id="text-1-2-2-1">
+<p>
+Complete the definition of the following function, then make sure that the <code>example</code>
+assertions below can each be verified by Lean.
+This function should return true if either or both of its inputs are false.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition nand (b1 b2 : boolean) : boolean :=
+/- FILL IN HERE -/ sorry
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\ndefinition nand (b1 b2 : boolean) : boolean :=\n/- FILL IN HERE -/ sorry\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Remove <code>sorry</code> and fill in each proof with <code>rfl</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">example : nand true false = true  :=
+/- FILL IN HERE -/ sorry
+example : nand false false = true :=
+/- FILL IN HERE -/ sorry
+example : nand false true = true  :=
+/- FILL IN HERE -/ sorry
+example : nand true true = false  :=
+/- FILL IN HERE -/ sorry
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\ndefinition nand (b1 b2 : boolean) : boolean :=\ncases_on b1 (cases_on b2 false true) true\n\nexample : nand true false = true  :=\n/- FILL IN HERE -/ sorry\nexample : nand false false = true :=\n/- FILL IN HERE -/ sorry\nexample : nand false true = true  :=\n/- FILL IN HERE -/ sorry\nexample : nand true true = false  :=\n/- FILL IN HERE -/ sorry\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</li>
+
+
+<li><a id="sec-1-2-2-2" name="sec-1-2-2-2"></a><span class="underline">Exercise:</span> <code>and3</code><br  /><div class="outline-text-5" id="text-1-2-2-2">
+<p>
+Do the same for the and3 function below.
+ This function should return true when all of its inputs are true, and false otherwise.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition and3 (b1 b2 b3 : boolean) : boolean :=
+/- FILL IN HERE -/ sorry
+
+example : and3 true true true = true   :=
+/- FILL IN HERE -/ sorry
+example : and3 false true true = false :=
+/- FILL IN HERE -/ sorry
+example : and3 true false true = false :=
+/- FILL IN HERE -/ sorry
+example : and3 true true false = false :=
+/- FILL IN HERE -/ sorry
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\ndefinition and3 (b1 b2 b3 : boolean) : boolean :=\n/- FILL IN HERE -/ sorry\n\nexample : and3 true true true = true   :=\n/- FILL IN HERE -/ sorry\nexample : and3 false true true = false :=\n/- FILL IN HERE -/ sorry\nexample : and3 true false true = false :=\n/- FILL IN HERE -/ sorry\nexample : and3 true true false = false :=\n/- FILL IN HERE -/ sorry\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Function Types</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The <code>check</code> command causes Lean to print the type of an expression.
+For example, the type of <code>and true false</code> is <code>boolean</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">check true
+-- true : boolean
+check neg true
+-- neg true : boolean
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\n\ndefinition neg (b : boolean) : boolean :=\ncases_on b false true\n\ndefinition and (b1 b2 : boolean) : boolean :=\ncases_on b1 b2 false\n\ndefinition or (b1 b2 : boolean) : boolean :=\ncases_on b1 true b2\n\nend boolean\n\nopen boolean\ncheck true\n-- true : boolean\ncheck neg true\n-- neg true : boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Functions like <code>neg</code> itself are also data values, just like <code>true</code> and <code>false</code>.
+Their types are called function types, and they are written with arrows.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">check neg
+-- negb : boolean → boolean
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\n\ndefinition neg (b : boolean) : boolean :=\ncases_on b false true\n\ndefinition and (b1 b2 : boolean) : boolean :=\ncases_on b1 b2 false\n\ndefinition or (b1 b2 : boolean) : boolean :=\ncases_on b1 true b2\n\nend boolean\n\nopen boolean\ncheck neg\n-- negb : boolean → boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The type of <code>neg</code>, written <code>boolean → boolean</code> and pronounced "boolean arrow
+boolean," can be read, "Given an input of type <code>boolean</code>, this function
+produces an output of type <code>boolean</code>." Similarly, the type of <code>and</code>, written
+<code>boolean → boolean → boolean</code>, can be read, "Given two inputs, both of type <code>boolean</code>,
+this function produces an output of type <code>boolean</code>."
+</p>
+
+<p>
+<span class="underline">Remark</span>: in the Lean web interface and Emacs mode, we can input the unicode character
+<code>→</code> by typing <code>\r</code>. We can also use <code>-&gt;</code> instead of <code>→</code>. In the web interface, the replacement only occurs
+after we press <code>space</code> after typing <code>\r</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">example : (boolean -&gt; boolean) = (boolean → boolean) :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\nexample : (boolean -&gt; boolean) = (boolean → boolean) :=\nrfl\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Not every function must have a name. The keyword <code>fun</code> introduces an anonymous function.
+<code>(fun x : A, e)</code> is the function which takes an argument <code>x</code> of type <code>A</code> and returns the result <code>e</code>.
+For example, the function <code>neg</code> above could be also written as
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">namespace boolean
+
+check fun b : boolean, boolean.cases_on b false true
+
+end boolean
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\n\ncheck fun b : boolean, boolean.cases_on b false true\n\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We say <code>(fun x : A, e)</code> is a "lambda abstraction". We can also use the unicode character <code>λ</code> instead of <code>fun</code>.
+We can input this character by typing <code>\fun</code>. In many cases, the type <code>A</code> can be inferred automatically by Lean, and
+be omitted.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">namespace boolean
+
+check λ b, cases_on b false true
+
+end boolean
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\nnamespace boolean\n\ncheck λ b, cases_on b false true\n\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Functions with multiple arguments are very common. We can write <code>(fun x_1 : A_1, fun x_2 : A_2, ..., e)</code>
+as <code>(fun (x_1 : A_1) (x_2 : A_2) ..., e)</code>. Moreover, if <code>x_1</code> and <code>x_2</code> have the same type, we can
+write <code>(fun (x_1 x_2 : A) ..., e)</code>.
+For example, the function <code>and</code> above could be also written as one of the following forms:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">namespace boolean
+
+check fun b1 : boolean, fun b2 : boolean, cases_on b1 b2 false
+check fun (b1 b2 : boolean), cases_on b1 b2 false
+check λ (b1 b2 : boolean), cases_on b1 b2 false
+check λ b1 b2, cases_on b1 b2 false
+
+end boolean
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\nnamespace boolean\n\ncheck fun b1 : boolean, fun b2 : boolean, cases_on b1 b2 false\ncheck fun (b1 b2 : boolean), cases_on b1 b2 false\ncheck λ (b1 b2 : boolean), cases_on b1 b2 false\ncheck λ b1 b2, cases_on b1 b2 false\n\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Numbers</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Technical digression: Lean provides a fairly sophisticated "module" system, to aid in organizing large developments.
+If we enclose a collection of declarations between <code>namespace X</code> and <code>end X</code> markers,
+then, in the remainder of the file after the <code>end</code>,
+these definitions will be referred to by names like <code>X.foo</code> instead of just <code>foo</code>.
+Here, we use this feature to introduce the definition of the type <code>nat</code> in an inner namespace so that it does not
+shadow the one from the standard library.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">namespace playground
+
+end playground
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('namespace playground\n\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The types we have defined so far are examples of "enumerated types": their definitions explicitly enumerate a
+finite set of elements. A more interesting way of defining a type is to give a collection of "inductive rules"
+describing its elements. For example, we can define the natural numbers as follows:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">inductive nat :=
+O : nat,
+S : nat → nat
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('namespace playground\ninductive nat :=\nO : nat,\nS : nat → nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The clauses of this definition can be read: <code>O</code> is a natural number (note that this is the letter "O," not the numeral "0").
+<code>S</code> is a "constructor" that takes a natural number and yields another one — that is, if <code>n</code> is a natural number, then <code>S n</code> is too.
+Let's look at this in a little more detail.
+Every inductively defined set (<code>day</code>, <code>nat</code>, <code>boolean</code>, etc.) is actually a set of expressions.
+The definition of <code>nat</code> says how expressions in the set <code>nat</code> can be constructed:
+the expression <code>O</code> belongs to the set nat;
+if <code>n</code> is an expression belonging to the set <code>nat</code>, then <code>S n</code> is also an expression belonging to the set <code>nat</code>;
+and expressions formed in these two ways are the only ones belonging to the set <code>nat</code>.
+The same rules apply for our definitions of <code>day</code> and <code>bool</code>.
+The annotations we used for their constructors are analogous to the one for the <code>O</code> constructor,
+and indicate that each of those constructors doesn't take any arguments.
+These three conditions are the precise force of the Inductive declaration.
+They imply that the expression <code>O</code>, the expression <code>S O</code>, the expression <code>S (S O)</code>,
+the expression <code>S (S (S O))</code>, and so on all belong to the set <code>nat</code>,
+while other expressions like <code>true</code>, <code>and true false</code>, and <code>S (S false)</code> do not.
+Each inductive declaration has an associated recursor that allow us to
+define things by recursion on the structure of the inductive type
+elements. For example, the predecessor function:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">namespace nat
+definition pred (n : nat) : nat :=
+cases_on n
+  O                     -- case n is O
+  (fun (n₁ : nat), n₁)  -- case n is S n₁
+
+eval pred (S (S O))
+
+example : pred (S (S O)) = S O :=
+rfl
+
+end nat
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\ninductive nat :=\nO : nat,\nS : nat → nat\nnamespace nat\ndefinition pred (n : nat) : nat :=\ncases_on n\n  O                     -- case n is O\n  (fun (n₁ : nat), n₁)  -- case n is S n₁\n\neval pred (S (S O))\n\nexample : pred (S (S O)) = S O :=\nrfl\n\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The second branch can be read: "if <code>n</code> has the form <code>S n₁</code> for some <code>n₁</code>, then return <code>n₁</code>."
+</p>
+
+<p>
+<span class="underline">Remark</span>: numeric subscripts can be conveniently inputed by typing <code>\1</code>, <code>\2</code>, &#x2026;.
+This feature is available in the Lean web interface and Emacs mode.
+</p>
+
+<p>
+Now, we define the function <code>minustwo</code> using two nested <code>cases_on</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition minustwo (n : nat) : nat :=
+cases_on n
+  O                     -- n is O
+  (fun n₁, cases_on n₁  -- n is S n₁
+    O                   -- n₁ is O
+    (fun n₂, n₂))       -- n₁ is S n₂
+
+eval minustwo (S (S (S O)))
+
+example : minustwo (S (S (S O))) = (S O) :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\ninductive nat :=\nO : nat,\nS : nat → nat\nnamespace nat\n\ndefinition minustwo (n : nat) : nat :=\ncases_on n\n  O                     -- n is O\n  (fun n₁, cases_on n₁  -- n is S n₁\n    O                   -- n₁ is O\n    (fun n₂, n₂))       -- n₁ is S n₂\n\neval minustwo (S (S (S O)))\n\nexample : minustwo (S (S (S O))) = (S O) :=\nrfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Lean provides support for parsing and printing numeric types as ordinary arabic numerals.
+The "trick" is based on a type called <code>num</code> that has builtin support for parsing and printing using arabic numerals.
+If we want similar support for other numeric types we must define a coercion to <code>num</code>.
+The <code>nat</code> type in standard library provides that.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+check succ 2
+eval succ 2
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ncheck succ 2\neval succ 2\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the example above, <code>succ</code> has type <code>nat → nat</code>, and <code>2</code> is a <code>num</code>. To make the expression type check,
+Lean automatically injects a coercion from <code>num</code> to <code>nat</code>. By default, Lean does not display coercions.
+We can change that by setting the option <code>pp.coercions</code>. Note that, in the following example, we use the
+standard library <code>nat</code> type.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">set_option pp.coercions true
+check succ 2
+
+example : succ 2 = succ (of_num 2) :=
+rfl
+
+check of_num
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\nset_option pp.coercions true\ncheck succ 2\n\nexample : succ 2 = succ (of_num 2) :=\nrfl\n\ncheck of_num\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The coercion <code>of_num</code> is just a function from <code>num</code> to <code>nat</code>.
+</p>
+
+<p>
+Returning to our <code>nat</code> type, the constructor <code>S</code> has the type <code>nat → nat</code>,
+just like the functions <code>minustwo</code> and <code>pred</code>:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">check S
+check pred
+check minustwo
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\ninductive nat :=\nO : nat,\nS : nat → nat\nnamespace nat\ndefinition pred (n : nat) : nat :=\ncases_on n\n  O\n  (fun (n₁ : nat), n₁)\n\ndefinition minustwo (n : nat) : nat :=\npred (pred n)\n\ncheck S\ncheck pred\ncheck minustwo\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+These are all things that can be applied to a number to yield a number.
+However, there is a fundamental difference: functions like <code>pred</code> and <code>minustwo</code>
+come with computation rules &#x2013; e.g., the definition of <code>pred</code> says that <code>pred (S (S O))</code> can be simplified to
+<code>S O</code> &#x2013; while the definition of <code>S</code> has no such behavior attached.
+Although it is like a function in the sense that it can be applied to an argument,
+it does not do anything at all!
+For most function definitions over numbers, pure case analysis is not enough:
+we also need recursion. For example, to check that a number <code>n</code> is even,
+we may need to recursively check whether <code>n-1</code> is odd.
+We can also write this kind of function using recursors.
+Lean automatically generates different recursors whenever an inductive datatype is declared.
+The recursor <code>rec_on</code> is similar to <code>cases_on</code>, but it provides a <span class="underline">recursive parameter</span>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition even (n : nat) : boolean :=
+rec_on n
+  true
+  (fun (n₁ : nat) (r : boolean), neg r)
+
+eval even O
+eval even (S O)
+eval even (S (S O))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\n  definition neg (b : boolean) : boolean :=\n  cases_on b false true\nend boolean\n\nopen boolean\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition even (n : nat) : boolean :=\nrec_on n\n  true\n  (fun (n₁ : nat) (r : boolean), neg r)\n\neval even O\neval even (S O)\neval even (S (S O))\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The definition above can be read as: "if <code>n</code> is <code>O</code>, then it is even;
+if <code>n</code> has the form <code>S n₁</code> for some <code>n₁</code>, and <code>n₁</code> is even (this information
+is stored in <code>r</code>), then <code>n₁</code> is <b>not</b> even. We say <code>r</code> is the
+<span class="underline">recursive parameter</span> in the minor premise associated with the constructor
+<code>S</code>. For non-recursive inductive datatypes, the recursors <code>cases_on</code> and <code>rec_on</code>
+are identical.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">check boolean.rec_on
+check boolean.cases_on
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\ncheck boolean.rec_on\ncheck boolean.cases_on\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can define <code>odd</code> in a similar way, but here is a simpler definition:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition odd (n : nat) : boolean :=
+neg (even n)
+
+example : odd (S O) = true :=
+rfl
+
+example : odd (S (S (S (S O)))) = false :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\n  definition neg (b : boolean) : boolean :=\n  cases_on b false true\nend boolean\n\nopen boolean\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition even (n : nat) : boolean :=\nrec_on n\n  true\n  (fun (n₁ : nat) (r : boolean), neg r)\n\ndefinition odd (n : nat) : boolean :=\nneg (even n)\n\nexample : odd (S O) = true :=\nrfl\n\nexample : odd (S (S (S (S O)))) = false :=\nrfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Naturally, we can also define multi-argument functions using recursors.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition add (n m : nat) : nat :=
+rec_on n
+  m
+  (fun (n₁ : nat) (r : nat), S r)
+
+-- Adding three to two gives us five, as we would expect.
+example : add (S (S (S O))) (S (S O)) = S (S (S (S (S O)))) :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\n-- Adding three to two gives us five, as we would expect.\nexample : add (S (S (S O))) (S (S O)) = S (S (S (S (S O)))) :=\nrfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The definition above can be read: "if <code>n</code> is <code>O</code>, then the result of the addition is <code>m</code>;
+if <code>n</code> has the form <code>S n₁</code> for some <code>n₁</code> and <code>r</code> contains <code>add n₁ m</code>, then return <code>S r</code>.
+</p>
+
+<p>
+We can use <code>add</code> to define a coercion from <code>num</code> to our <code>nat</code>.
+The type <code>num</code> is defined as
+</p>
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">inductive pos_num :=
+one  : pos_num,
+bit1 : pos_num → pos_num,
+bit0 : pos_num → pos_num
+
+inductive num :=
+zero  : num,
+pos   : pos_num → num
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('namespace playground\ninductive pos_num :=\none  : pos_num,\nbit1 : pos_num → pos_num,\nbit0 : pos_num → pos_num\n\ninductive num :=\nzero  : num,\npos   : pos_num → num\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+It uses binary encoding for compactly representing big numbers:
+<code>bit1 n</code> encodes <code>2*n+1</code>, and <code>bit0 n</code> encodes <code>2*n</code>.
+As any inductive type, Lean automatically creates the recursors <code>rec_on</code> and <code>cases_on</code>.
+We use them to define a coercion.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition num_to_nat [coercion] (n : num) : nat :=
+num.cases_on n
+  O
+  (fun (p : pos_num), pos_num.rec_on p
+    (S O)
+    (fun (p₁ : pos_num) (r : nat), S (add r r))
+    (fun (p₁ : pos_num) (r : nat), add r r))
+
+example : add 2 2 = 4 :=
+rfl
+
+example : add 1 2 = S (S (S O)) :=
+rfl
+
+check add 2 1
+set_option pp.coercions true
+check add 2 1
+
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\nexample : add 2 2 = 4 :=\nrfl\n\nexample : add 1 2 = S (S (S O)) :=\nrfl\n\ncheck add 2 1\nset_option pp.coercions true\ncheck add 2 1\n\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The annotation <code>[coercion]</code> instructs Lean to use <code>num_to_nat</code> whenever we
+have a <code>num</code>, but the system expects a <code>nat</code>. In the example above, the function
+<code>add</code> expects two <code>nat</code>'s, but we are providing two <code>num</code>'s. Thus, Lean
+automatically inserts <code>num_to_nat</code>.
+</p>
+
+<p>
+Now, we define subtraction <code>sub</code> and multiplication <code>mul</code> using <code>add</code> and <code>pred</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition sub (n m : nat) : nat :=
+rec_on m
+  n
+  (fun (n₁ : nat) (r : nat), pred r)
+
+example : sub (S (S (S O))) (S (S O)) = S O :=
+rfl
+
+definition mul (n m : nat) : nat :=
+rec_on n
+  O
+  (fun (n₁ : nat) (r : nat), add m r)
+
+example : mul (S (S O)) (S (S (S O))) = (S (S (S (S (S (S O)))))) :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition pred (n : nat) : nat :=\ncases_on n\n  O\n  (fun (n₁ : nat), n₁)\n\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition sub (n m : nat) : nat :=\nrec_on m\n  n\n  (fun (n₁ : nat) (r : nat), pred r)\n\nexample : sub (S (S (S O))) (S (S O)) = S O :=\nrfl\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\nexample : mul (S (S O)) (S (S (S O))) = (S (S (S (S (S (S O)))))) :=\nrfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Now, we define the exponential function <code>exp</code> using <code>mul</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition exp (base power : nat) : nat :=
+rec_on power
+  (S O)
+  (fun (n₁ : nat) (r : nat), mul base r)
+
+eval exp (S (S O)) (S (S (S O)))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\ndefinition exp (base power : nat) : nat :=\nrec_on power\n  (S O)\n  (fun (n₁ : nat) (r : nat), mul base r)\n\neval exp (S (S O)) (S (S (S O)))\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-4-0-1" name="sec-1-4-0-1"></a>Exercise <code>factorial</code><br  /><div class="outline-text-5" id="text-1-4-0-1">
+<p>
+Recall the standard factorial function:
+</p>
+<pre class="example">
+factorial(0)  =  1
+factorial(n)  =  n * factorial(n-1)     (if n&gt;0)
+</pre>
+<p>
+Translate this into Lean.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition factorial (n : nat) : nat :=
+/- FILL IN HERE -/ sorry
+
+example : factorial 3 = 6 :=
+/- FILL IN HERE -/ sorry
+
+example : factorial 5 = (mul 10 12) :=
+/- FILL IN HERE -/ sorry
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\ndefinition factorial (n : nat) : nat :=\n/- FILL IN HERE -/ sorry\n\nexample : factorial 3 = 6 :=\n/- FILL IN HERE -/ sorry\n\nexample : factorial 5 = (mul 10 12) :=\n/- FILL IN HERE -/ sorry\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can make numerical expressions a little easier to read and write by introducing "notations"
+for addition, multiplication, and subtraction.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">notation a + b := add a b
+notation a - b := sub a b
+notation a * b := mul a b
+
+eval 2 + 3 * 2 - 1
+
+example : 2 + 3 * 2 - 1 = 7 :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition pred (n : nat) : nat :=\ncases_on n\n  O\n  (fun (n₁ : nat), n₁)\n\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition sub (n m : nat) : nat :=\nrec_on m\n  n\n  (fun (n₁ : nat) (r : nat), pred r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\nnotation a + b := add a b\nnotation a - b := sub a b\nnotation a * b := mul a b\n\neval 2 + 3 * 2 - 1\n\nexample : 2 + 3 * 2 - 1 = 7 :=\nrfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the example above, we did not have to provide precedence levels for the new
+notation because the Lean standard library already assigns precedence
+for commonly used operators such as <code>+</code>, <code>*</code> and <code>-</code>.
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Proof by Reflexivity</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Now that we've defined a few datatypes and functions, let's turn to
+the question of how to state and prove properties of their
+behavior. Actually, in a sense, we've already started doing this: each
+Example in the previous sections makes a precise claim about the
+behavior of some function on some particular inputs. The proofs of
+these claims were always the same: use reflexivity <code>rfl</code> to check that both
+sides of the <code>=</code> evaluate to identical values.  The same sort of "proof by
+evaluation" can be used to prove more interesting properties as
+well. For example, the fact that <code>0</code> is a "neutral element" for <code>+</code> on the
+left can be proved just by observing that <code>0 + n</code> reduces/evaluates to <code>n</code> no matter
+what <code>n</code> is, a fact that can be read directly off the definition of
+plus.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem add_0_n : ∀n : nat, 0 + n = n :=
+take n : nat, rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\nnotation a + b := add a b\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\ntheorem add_0_n : ∀n : nat, 0 + n = n :=\ntake n : nat, rfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The symbol <code>∀</code> can be inputed by typing <code>\all</code>. We can also
+use the token <code>forall</code> instead of the unicode character <code>∀</code>.
+The form of this theorem and proof are almost exactly the same as the examples above; there are just a few differences.
+First, we've used the keyword <code>theorem</code> instead of <code>example</code>. We provided a name to identify the theorem.
+The keywords <code>definition</code> and <code>theorem</code> are almost the same thing in Lean.
+Secondly, we've added the quantifier <code>∀ n:nat</code>, so that our theorem talks about all natural numbers <code>n</code>.
+In order to prove theorems of this form, we need to to be able to reason by assuming the existence of an arbitrary natural number <code>n</code>.
+This is achieved in the proof by <code>take n : nat, ...</code>. In effect, we start the proof by saying "OK, suppose <code>n</code> is some arbitrary number."
+Eventually, it will become clear that <code>take</code> is just another syntax sugar for lambda abstraction. We could also have used <code>fun</code> or <code>λ</code>
+in the proof above. In Lean, proof checking is type checking. The same procedure used to type check our definitions is used to
+proof/type check our theorems. Here are other simple theorems.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem add_1_left : ∀n : nat, 1 + n = S n :=
+take n : nat, rfl
+
+theorem mult_0_left : ∀n : nat, 0 * n = 0 :=
+take n : nat, rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\nnotation a + b := add a b\nnotation a * b := mul a b\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\ntheorem add_1_left : ∀n : nat, 1 + n = S n :=\ntake n : nat, rfl\n\ntheorem mult_0_left : ∀n : nat, 0 * n = 0 :=\ntake n : nat, rfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We have been using <code>rfl</code> as a short hand for reflexivity.
+That is, a proof for <code>?a = ?a</code>, but which <code>?a</code>?.
+Lean infers the <code>?a</code> from the context where <code>rfl</code> is used.
+Sometimes, it is convenient to provide <code>?a</code> explicitly
+(e.g., as a form of documentation in a longer proof).
+In this cases, we can use <code>eq.refl t</code> as a proof for <code>t = t</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">check rfl
+check eq.refl 1
+
+example : 1 = 1 :=
+rfl
+
+example : 1 = 1 :=
+eq.refl 1
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\ncheck rfl\ncheck eq.refl 1\n\nexample : 1 = 1 :=\nrfl\n\nexample : 1 = 1 :=\neq.refl 1\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Here are the <code>add_1_left</code> and <code>mult_0_left</code> theorems using <code>eq.refl</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem add_1_left : ∀n : nat, 1 + n = S n :=
+take n : nat, eq.refl (1 + n)
+
+theorem mult_0_left : ∀n : nat, 0 * n = 0 :=
+take n : nat, eq.refl (0 * n)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\nnotation a + b := add a b\nnotation a * b := mul a b\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\ntheorem add_1_left : ∀n : nat, 1 + n = S n :=\ntake n : nat, eq.refl (1 + n)\n\ntheorem mult_0_left : ∀n : nat, 0 * n = 0 :=\ntake n : nat, eq.refl (0 * n)\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Proof by Substitution</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Here is a slightly more interesting theorem:
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem plus_id_example : ∀n m : nat, n = m → n + n = m + m :=
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\nnotation a + b := add a b\n\ntheorem plus_id_example : ∀n m : nat, n = m → n + n = m + m :=\ntake n m : nat, assume H : n = m,\n  eq.subst H (eq.refl (n + n))\n\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Instead of making a completely universal claim about all numbers <code>n</code> and <code>m</code>,
+this theorem talks about a more specialized property that only holds when <code>n = m</code>.
+The arrow symbol is pronounced "implies." As before, we need to be able to reason by
+assuming the existence of some numbers <code>n</code> and <code>m</code>. We also need to assume the hypothesis <code>n = m</code>.
+We can use lambda abstraction for doing all three.
+To make proofs look like more text book proofs, Lean provides yet another syntax sugar for
+lambda abstraction: <code>assume</code>.
+Since <code>n</code> and <code>m</code> are arbitrary numbers, we can't just use evaluation to prove this theorem.
+Instead, we prove it by observing that, if we are assuming <code>n = m</code>, then we can replace <code>n</code> with <code>m</code> in
+the right hand side of the equality <code>n + n = n + n</code>. Moreover, the equality <code>n + n = n + n</code> can be justified
+by reflexivity. Lean provides a function <code>eq.subst H1 H2</code>, given <code>(H1 : n = m)</code>, the expression <code>(eq.subst H1 H2)</code> replaces <code>n</code> with
+<code>m</code> in <code>H2</code>. Now, we provide different proofs for the theorem <code>plus_id_example</code> using <code>eq.subst</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem plus_id_example : ∀n m : nat, n = m → n + n = m + m :=
+take n m : nat, assume H : n = m,
+  eq.subst H (eq.refl (n + n))
+
+-- We can avoid the eq prefix by opening the namespace eq
+open eq
+theorem plus_id_example_2 : ∀n m : nat, n = m → n + n = m + m :=
+take n m : nat, assume H : n = m,
+  subst H (refl (n + n))
+
+-- We can use rfl instead of refl
+theorem plus_id_example_3 : ∀n m : nat, n = m → n + n = m + m :=
+take n m : nat, assume H : n = m,
+  subst H rfl
+
+-- We can use λ instead of take and assume
+theorem plus_id_example_4 : ∀n m : nat, n = m → n + n = m + m :=
+λ (n m : nat) (H : n = m),
+  subst H rfl
+
+-- We can omit types
+theorem plus_id_example_5 : ∀n m : nat, n = m → n + n = m + m :=
+λ n m H, subst H rfl
+
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\nnotation a + b := add a b\n\ntheorem plus_id_example : ∀n m : nat, n = m → n + n = m + m :=\ntake n m : nat, assume H : n = m,\n  eq.subst H (eq.refl (n + n))\n\n-- We can avoid the eq prefix by opening the namespace eq\nopen eq\ntheorem plus_id_example_2 : ∀n m : nat, n = m → n + n = m + m :=\ntake n m : nat, assume H : n = m,\n  subst H (refl (n + n))\n\n-- We can use rfl instead of refl\ntheorem plus_id_example_3 : ∀n m : nat, n = m → n + n = m + m :=\ntake n m : nat, assume H : n = m,\n  subst H rfl\n\n-- We can use λ instead of take and assume\ntheorem plus_id_example_4 : ∀n m : nat, n = m → n + n = m + m :=\nλ (n m : nat) (H : n = m),\n  subst H rfl\n\n-- We can omit types\ntheorem plus_id_example_5 : ∀n m : nat, n = m → n + n = m + m :=\nλ n m H, subst H rfl\n\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The functions <code>eq.subst</code> is extensively used in the standard library. To make it more
+convenient to use, the notation <code>H₁ ▸ H₂</code> can be used as syntax sugar for <code>eq.subst H₁ H₂</code>.
+This notation is defined in the namespace <code>eq.ops</code>.
+The character <code>▸</code> is inputed by typing <code>\t</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">open eq.ops
+theorem plus_id_example : ∀n m : nat, n = m → n + n = m + m :=
+λ n m H, H ▸ rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\nnotation a + b := add a b\n\nopen eq.ops\ntheorem plus_id_example : ∀n m : nat, n = m → n + n = m + m :=\nλ n m H, H ▸ rfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-6-0-1" name="sec-1-6-0-1"></a>Exercise <code>add_id_exercise</code><br  /><div class="outline-text-5" id="text-1-6-0-1">
+<p>
+Remove <code>sorry</code> and fill in the proof.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem plus_id_exercise : ∀n m o : nat, n = m → m = o → n + m = m + o :=
+/- FILL IN HERE -/ sorry
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\nnotation a + b := add a b\n\nopen eq eq.ops\ntheorem plus_id_exercise : ∀n m o : nat, n = m → m = o → n + m = m + o :=\n/- FILL IN HERE -/ sorry\n\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+As we've seen in earlier examples, the <code>sorry</code> expression tells Lean that we want to skip trying
+to prove this theorem and just accept it as a given. This can be useful for developing longer proofs,
+since we can state subsidiary facts that we believe will be useful for making some larger argument,
+use <code>sorry</code> to accept them on faith for the moment, and continue thinking about the larger argument
+until we are sure it makes sense; then we can go back and fill in the proofs we skipped.
+Be careful, though: every time you say <code>sorry</code> you are leaving a door open for total nonsense to enter Lean rigorous and
+formally checked world! Note that, Lean produces warning messages whenever we use <code>sorry</code> and/or
+import a module that contains sorry.
+</p>
+
+<p>
+We can also use the <code>eq.subst</code> with a previously proved theorem instead of
+a hypothesis from the context.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem mult_0_plus : ∀n m : nat, (0 + n) * m = n * m :=
+take n m,
+  subst (add_0_n n) rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\nnotation a + b := add a b\nnotation a * b := mul a b\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\ntheorem add_0_n : ∀n : nat, 0 + n = n :=\ntake n : nat, rfl\n\nopen eq eq.ops\n\ntheorem mult_0_plus : ∀n m : nat, (0 + n) * m = n * m :=\ntake n m,\n  subst (add_0_n n) rfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the example above, the <code>n</code> in <code>(add_0_n n)</code> can be inferred automatically by Lean.
+We can use <code>_</code> to indicate arguments that should be inferred automatically by Lean.
+That is, we can write <code>(add_0_n _)</code> instead of <code>(add_0_n n)</code>. In this example, it is straightforward
+how to fill/synthesize <code>_</code>, but this will not always be the case.
+To avoid the proliferation of terms such as <code>(f _ _ _)</code>, Lean provides the alternative syntax <code>!f</code>.
+Later, we explain in detail the semantics of the operator <code>!</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem mult_0_plus : ∀n m : nat, (0 + n) * m = n * m :=
+take n m,
+  subst !add_0_n rfl
+
+-- Here is another proof using the notation ▸
+theorem mult_0_plus_2 : ∀n m : nat, (0 + n) * m = n * m :=
+take n m, !add_0_n ▸ rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\nnotation a + b := add a b\nnotation a * b := mul a b\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\ntheorem add_0_n : ∀n : nat, 0 + n = n :=\ntake n : nat, rfl\n\nopen eq eq.ops\n\ntheorem mult_0_plus : ∀n m : nat, (0 + n) * m = n * m :=\ntake n m,\n  subst !add_0_n rfl\n\n-- Here is another proof using the notation ▸\ntheorem mult_0_plus_2 : ∀n m : nat, (0 + n) * m = n * m :=\ntake n m, !add_0_n ▸ rfl\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-6-0-2" name="sec-1-6-0-2"></a>Exercise <code>mult_S_1</code><br  /><div class="outline-text-5" id="text-1-6-0-2">
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem mult_S_1 : ∀n m : nat, m = S n → m * (1 + n) = m * m :=
+/- FILL IN HERE -/ sorry
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nnamespace playground\n\ninductive nat :=\nO : nat,\nS : nat → nat\n\nnamespace nat\ndefinition add (n m : nat) : nat :=\nrec_on n\n  m\n  (fun (n₁ : nat) (r : nat), S r)\n\ndefinition mul (n m : nat) : nat :=\nrec_on n\n  O\n  (fun (n₁ : nat) (r : nat), add m r)\n\nnotation a + b := add a b\nnotation a * b := mul a b\n\ndefinition num_to_nat [coercion] (n : num) : nat :=\nnum.cases_on n\n  O\n  (fun (p : pos_num), pos_num.rec_on p\n    (S O)\n    (fun (p₁ : pos_num) (r : nat), S (add r r))\n    (fun (p₁ : pos_num) (r : nat), add r r))\n\ntheorem add_1_left : ∀n : nat, 1 + n = S n :=\ntake n : nat, rfl\n\nopen eq eq.ops\ntheorem mult_S_1 : ∀n m : nat, m = S n → m * (1 + n) = m * m :=\n/- FILL IN HERE -/ sorry\nend nat\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Proof by Case Analysis</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Of course, not everything can be proved by simple calculation: In
+general, unknown, hypothetical values (arbitrary numbers, booleans,
+lists, etc.) can block the evaluation. Here is a simple example
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem neg_involutive : ∀b : boolean, neg (neg b) = b :=
+/- rfl -/ -- fails
+sorry
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\ndefinition neg (b : boolean) : boolean :=\ncases_on b false true\n\ntheorem neg_involutive : ∀b : boolean, neg (neg b) = b :=\n/- rfl -/ -- fails\nsorry\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The reason for the failure is that <code>neg</code> is defined using
+<code>cases_on</code> on <code>b</code>. But here, <code>b</code> is the unknown boolean <code>b</code>.
+Thus, the expression <code>(neg b)</code> cannot be evaluated/reduced.
+We say it is <span class="underline">stuck</span>.
+</p>
+
+<p>
+The same way we use <code>cases_on</code> to define functions, we can use it to prove
+theorems by case-analysis.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem neg_involutive : ∀b : boolean, neg (neg b) = b :=
+take b : boolean,
+  cases_on b
+    rfl   -- proof for the case b is true
+    rfl   -- proof for the case b is false
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ninductive boolean :=\ntrue, false\n\nnamespace boolean\ndefinition neg (b : boolean) : boolean :=\ncases_on b false true\n\ntheorem neg_involutive : ∀b : boolean, neg (neg b) = b :=\ntake b : boolean,\n  cases_on b\n    rfl   -- proof for the case b is true\n    rfl   -- proof for the case b is false\nend boolean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The proof above can be read as: "take a boolean <code>b</code>, it can be <code>true</code> or <code>false</code>,
+in both cases if we evaluate the left/right hand sides, we obtain the same value.
+</p>
+
+<p>
+If we replace the <code>rfl</code>'s by <code>_</code> in the proof above, Lean will say the placeholders <code>_</code>'s
+cannot be synthesized, and will show what needs to be proved:
+</p>
+<pre class="example">
+⊢ neg (neg false) = false
+</pre>
+<p>
+and
+</p>
+<pre class="example">
+⊢ neg (neg true) = true
+</pre>
+
+<p>
+For readers using the Lean Emacs mode, they can simply hover over the incomplete proof
+to obtain information about missing parts. Lean also reports the type of every <code>sorry</code> used in
+an input file.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: <a href="http://leodemoura.github.io">Leonardo de Moura</a></p>
+<p class="date">Created: 2014-11-05 Wed 23:14</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

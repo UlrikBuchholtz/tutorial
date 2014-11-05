@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Structures</title>
+<!-- 2014-11-05 Wed 23:14 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="[[http://leodemoura.github.io][Leonardo de Moura]]Leonardo de Moura" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel='stylesheet' href='css/tutorial.css'>
+<link rel='stylesheet' href='css/jquery-ui.css'>
+<script src='js/platform.js'></script>
+<script src='js/jquery-1.10.2.js'></script>
+<script src='js/jquery-ui.js'></script>
+<link rel='import' href='juicy-ace-editor.html'>
+<link rel='stylesheet' href='css/code.css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Structures</h1>
+<p>
+The <code>structure</code> command generates <span class="underline">record</span> types. They generalize the dependent product type
+by providing named fields. It can be viewed as a macro built on top of the inductive datatype
+provided by the Lean kernel. Every <code>structure</code> declaration introduces a namespace with the
+same name. The general form of a structure declaration is as follows:
+</p>
+
+
+<pre class="example">
+structure &lt;name&gt; &lt;parameters&gt; &lt;parent-structures&gt; : Type :=
+  &lt;constructor&gt; :: &lt;fields&gt;
+</pre>
+
+<p>
+Most parts are optional. Here is a small example
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+
+structure point (A : Type) :=
+mk :: (x : A) (y : A)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure point (A : Type) :=\nmk :: (x : A) (y : A)\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Values of type <code>point</code> are created using <code>point.mk a b</code>, the fields of a point <code>p</code> are accessed using
+<code>point.x p</code> and <code>point.y p</code>. The structure command also generates useful recursors and theorems. Here are some of the
+constructions generated for the declaration above.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">check point
+check point.rec_on       -- recursor
+check point.induction_on -- recursor to Prop
+check point.destruct     -- alias for point.rec_on
+check point.x            -- projection/field accessor
+check point.y            -- projection/field accessor
+check point.eta          -- eta theorem
+check point.x.mk         -- projection over constructor theorem
+check point.y.mk         -- projection over constructor theorem
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure point (A : Type) :=\nmk :: (x : A) (y : A)\n\ncheck point\ncheck point.rec_on       -- recursor\ncheck point.induction_on -- recursor to Prop\ncheck point.destruct     -- alias for point.rec_on\ncheck point.x            -- projection/field accessor\ncheck point.y            -- projection/field accessor\ncheck point.eta          -- eta theorem\ncheck point.x.mk         -- projection over constructor theorem\ncheck point.y.mk         -- projection over constructor theorem\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can obtain the complete list of generated construction using the command <code>print prefix</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">print prefix point
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure point (A : Type) :=\nmk :: (x : A) (y : A)\n\nprint prefix point\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Here is some simple theorems and expressions using the generated constructions.
+As usual, we can avoid the prefix <code>point</code> by using the command <code>open point</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">eval point.x (point.mk 10 20)
+eval point.y (point.mk 10 20)
+
+open point
+
+example (A : Type) (a b : A) : x (mk a b) = a :=
+x.mk a b
+
+example (A : Type) (a b : A) : y (mk a b) = b :=
+y.mk a b
+
+example (A : Type) (a b : A) : y (mk a b) = b :=
+!y.mk  -- let Lean figure out the arguments
+
+example (A : Type) (p : point A) : mk (x p) (y p) = p :=
+eta p
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure point (A : Type) :=\nmk :: (x : A) (y : A)\n\neval point.x (point.mk 10 20)\neval point.y (point.mk 10 20)\n\nopen point\n\nexample (A : Type) (a b : A) : x (mk a b) = a :=\nx.mk a b\n\nexample (A : Type) (a b : A) : y (mk a b) = b :=\ny.mk a b\n\nexample (A : Type) (a b : A) : y (mk a b) = b :=\n!y.mk  -- let Lean figure out the arguments\n\nexample (A : Type) (p : point A) : mk (x p) (y p) = p :=\neta p\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+If the constructor is not provided, then a constructor named <code>mk</code> is generated.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">structure prod (A : Type) (B : Type) :=
+(pr1 : A) (pr2 : B)
+
+check prod.mk
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\nstructure prod (A : Type) (B : Type) :=\n(pr1 : A) (pr2 : B)\n\ncheck prod.mk\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can provide universe levels explicitly.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">-- Force A and B to be types from the same universe, and return a type also in the same universe.
+structure prod.{l} (A : Type.{l}) (B : Type.{l}) : Type.{max 1 l} :=
+(pr1 : A) (pr2 : B)
+
+-- Ask Lean to pretty print universe levels
+set_option pp.universes true
+check prod.mk
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\n-- Force A and B to be types from the same universe, and return a type also in the same universe.\nstructure prod.{l} (A : Type.{l}) (B : Type.{l}) : Type.{max 1 l} :=\n(pr1 : A) (pr2 : B)\n\n-- Ask Lean to pretty print universe levels\nset_option pp.universes true\ncheck prod.mk\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We use <code>max 1 l</code> as the resultant universe level to ensure the universe level is never <code>0</code>
+even when the parameter <code>A</code> and <code>B</code> are propositions.
+Recall that in Lean, <code>Type.{0}</code> is <code>Prop</code> which is impredicative and proof irrelevant.
+</p>
+
+<p>
+We can <span class="underline">extend</span> existing structures by adding new fields.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">structure point (A : Type) :=
+mk :: (x : A) (y : A)
+
+inductive color :=
+red, green, blue
+
+structure color_point (A : Type) extends point A :=
+mk :: (c : color)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure point (A : Type) :=\nmk :: (x : A) (y : A)\n\ninductive color :=\nred, green, blue\n\nstructure color_point (A : Type) extends point A :=\nmk :: (c : color)\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The type <code>color_point</code> inherits all the fields from <code>point</code> and declares a new one <code>c : color</code>.
+Lean automatically generates a <span class="underline">coercion</span> from <code>color_point</code> to <code>point</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">definition x_plus_y (p : point num) :=
+point.x p + point.y p
+
+definition green_point : color_point num :=
+color_point.mk 10 20 color.green
+
+eval x_plus_y green_point
+
+-- Force lean to display implicit coercions
+set_option pp.coercions true
+
+check x_plus_y green_point
+
+example : green_point = point.mk 10 20 :=
+rfl
+
+check color_point.to_point
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nopen num\n\nstructure point (A : Type) :=\nmk :: (x : A) (y : A)\n\ninductive color :=\nred, green, blue\n\nstructure color_point (A : Type) extends point A :=\nmk :: (c : color)\ndefinition x_plus_y (p : point num) :=\npoint.x p + point.y p\n\ndefinition green_point : color_point num :=\ncolor_point.mk 10 20 color.green\n\neval x_plus_y green_point\n\n-- Force lean to display implicit coercions\nset_option pp.coercions true\n\ncheck x_plus_y green_point\n\nexample : green_point = point.mk 10 20 :=\nrfl\n\ncheck color_point.to_point\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The coercions are named <code>to_&lt;parent structure&gt;</code>.
+Lean always declare functions that map the child structure to its parents.
+We can request Lean to <b>not</b> mark these functions as coercions by
+using the <code>private</code> keyword.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">structure point (A : Type) :=
+mk :: (x : A) (y : A)
+
+inductive color :=
+red, green, blue
+
+structure color_point (A : Type) extends private point A :=
+mk :: (c : color)
+
+-- For private parent structures we have to use the coercions explicitly.
+-- If we remove color_point.to_point we get a type error.
+example : color_point.to_point (color_point.mk 10 20 color.blue) = point.mk 10 20 :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nopen num\n\nstructure point (A : Type) :=\nmk :: (x : A) (y : A)\n\ninductive color :=\nred, green, blue\n\nstructure color_point (A : Type) extends private point A :=\nmk :: (c : color)\n\n-- For private parent structures we have to use the coercions explicitly.\n-- If we remove color_point.to_point we get a type error.\nexample : color_point.to_point (color_point.mk 10 20 color.blue) = point.mk 10 20 :=\nrfl\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can "rename" fields inherited from parent structures using the <code>renaming</code> clause.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">structure prod (A : Type) (B : Type) :=
+pair :: (pr1 : A) (pr2 : B)
+
+-- Rename fields pr1 and pr2 to x and y respectively.
+structure point3 (A : Type) extends prod A A renaming pr1→x pr2→y :=
+mk :: (z : A)
+
+check point3.x
+check point3.y
+check point3.z
+
+example : point3.mk 10 20 30 = prod.pair 10 20 :=
+rfl
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nnamespace playground\nstructure prod (A : Type) (B : Type) :=\npair :: (pr1 : A) (pr2 : B)\n\n-- Rename fields pr1 and pr2 to x and y respectively.\nstructure point3 (A : Type) extends prod A A renaming pr1→x pr2→y :=\nmk :: (z : A)\n\ncheck point3.x\ncheck point3.y\ncheck point3.z\n\nexample : point3.mk 10 20 30 = prod.pair 10 20 :=\nrfl\n\nend playground\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Structures can be tagged as a <span class="underline">class</span>. The class-instance resolution
+is used to synthesize implicit arguments marked with the <code>[]</code> modifier.
+Another difference is that the structure is an <span class="underline">instance implicit</span> argument for
+every projection. The idea is that the actual structure is inferred by Lean
+using the class-instance resolution.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+
+structure has_mul [class] (A : Type) :=
+mk :: (mul : A → A → A)
+
+check @has_mul.mul
+
+-- Since [s : has_mul A] is an instance implicit argument for has_mul.mul.
+-- The operation has_mul.mul can be used as a binary operator.
+infixl `*`   := has_mul.mul
+
+section
+  -- The structure s in the local context is used to synthesize
+  -- the implicit argument in a * b
+  variables (A : Type) (s : has_mul A) (a b : A)
+  check a * b
+end
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure has_mul [class] (A : Type) :=\nmk :: (mul : A → A → A)\n\ncheck @has_mul.mul\n\n-- Since [s : has_mul A] is an instance implicit argument for has_mul.mul.\n-- The operation has_mul.mul can be used as a binary operator.\ninfixl `*`   := has_mul.mul\n\nsection\n  -- The structure s in the local context is used to synthesize\n  -- the implicit argument in a * b\n  variables (A : Type) (s : has_mul A) (a b : A)\n  check a * b\nend\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+When a structure is marked as a class, the functions mapping a child structure
+to its parents is also marked as an <span class="underline">instance</span> unless the <code>private</code> modifier is used.
+Moreover, whenever an instances of the parent structure is required, and instance
+of the child structure can be provided. In the following example, we use
+this mechanism to "reuse" the notation defined for the parent structure with
+the child structure.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+
+structure has_mul [class] (A : Type) :=
+mk :: (mul : A → A → A)
+
+-- Since [s : has_mul A] is an instance implicit argument for has_mul.mul.
+-- The operation has_mul.mul can be used as a binary operator.
+infixl `*`   := has_mul.mul
+
+structure semigroup [class] (A : Type) extends has_mul A :=
+mk :: (assoc : ∀ a b c, mul (mul a b) c = mul a (mul b c))
+
+section
+  -- The structure s in the local context is used to synthesize
+  -- the implicit argument in a * b
+  variables (A : Type) (s : semigroup A) (a b : A)
+  check a * b
+
+  -- We can see what is going by asking Lean to display implicit
+  -- arguments, coercions, and disable notation.
+  set_option pp.implicit true
+  set_option pp.notation false
+  set_option pp.coercions true
+
+  check a * b
+end
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure has_mul [class] (A : Type) :=\nmk :: (mul : A → A → A)\n\n-- Since [s : has_mul A] is an instance implicit argument for has_mul.mul.\n-- The operation has_mul.mul can be used as a binary operator.\ninfixl `*`   := has_mul.mul\n\nstructure semigroup [class] (A : Type) extends has_mul A :=\nmk :: (assoc : ∀ a b c, mul (mul a b) c = mul a (mul b c))\n\nsection\n  -- The structure s in the local context is used to synthesize\n  -- the implicit argument in a * b\n  variables (A : Type) (s : semigroup A) (a b : A)\n  check a * b\n\n  -- We can see what is going by asking Lean to display implicit\n  -- arguments, coercions, and disable notation.\n  set_option pp.implicit true\n  set_option pp.notation false\n  set_option pp.coercions true\n\n  check a * b\nend\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Here is a fragment of the algebraic hierarchy defined using this mechanism.
+In Lean, we can also inherit from multiple structures. Moreover, fields with the same
+name are merged. If the types do not match an error is generated.
+The "merge" can be avoided by using the <code>renaming</code> clause.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+
+structure has_mul [class] (A : Type) :=
+mk :: (mul : A → A → A)
+
+structure has_one [class] (A : Type) :=
+mk :: (one : A)
+
+structure has_inv [class] (A : Type) :=
+mk :: (inv : A → A)
+
+infixl `*`   := has_mul.mul
+postfix `⁻¹` := has_inv.inv
+notation 1   := has_one.one
+
+structure semigroup [class] (A : Type) extends has_mul A :=
+mk :: (assoc : ∀ a b c, mul (mul a b) c = mul a (mul b c))
+
+structure comm_semigroup [class] (A : Type) extends semigroup A :=
+mk :: (comm : ∀a b, mul a b = mul b a)
+
+structure monoid [class] (A : Type) extends semigroup A, has_one A :=
+mk :: (right_id : ∀a, mul a one = a) (left_id : ∀a, mul one a = a)
+
+-- We can suppress := and :: when we are not declaring any new field.
+structure comm_monoid [class] (A : Type) extends monoid A, comm_semigroup A
+
+-- The common fields of monoid and comm_semigroup have been merged
+print prefix comm_monoid
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure has_mul [class] (A : Type) :=\nmk :: (mul : A → A → A)\n\nstructure has_one [class] (A : Type) :=\nmk :: (one : A)\n\nstructure has_inv [class] (A : Type) :=\nmk :: (inv : A → A)\n\ninfixl `*`   := has_mul.mul\npostfix `⁻¹` := has_inv.inv\nnotation 1   := has_one.one\n\nstructure semigroup [class] (A : Type) extends has_mul A :=\nmk :: (assoc : ∀ a b c, mul (mul a b) c = mul a (mul b c))\n\nstructure comm_semigroup [class] (A : Type) extends semigroup A :=\nmk :: (comm : ∀a b, mul a b = mul b a)\n\nstructure monoid [class] (A : Type) extends semigroup A, has_one A :=\nmk :: (right_id : ∀a, mul a one = a) (left_id : ∀a, mul one a = a)\n\n-- We can suppress := and :: when we are not declaring any new field.\nstructure comm_monoid [class] (A : Type) extends monoid A, comm_semigroup A\n\n-- The common fields of monoid and comm_semigroup have been merged\nprint prefix comm_monoid\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The <code>renaming</code> clause allow us to perform non-trivial merge operations such as combining an abelian group with a monoid to
+obtain a ring.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+
+structure has_mul [class] (A : Type) :=
+(mul : A → A → A)
+
+structure has_one [class] (A : Type) :=
+(one : A)
+
+structure has_inv [class] (A : Type) :=
+(inv : A → A)
+
+infixl `*`   := has_mul.mul
+postfix `⁻¹` := has_inv.inv
+notation 1   := has_one.one
+
+structure semigroup [class] (A : Type) extends has_mul A :=
+(assoc : ∀ a b c, mul (mul a b) c = mul a (mul b c))
+
+structure comm_semigroup [class] (A : Type) extends semigroup A renaming mul→add:=
+(comm : ∀a b, add a b = add b a)
+
+infixl `+` := comm_semigroup.add
+
+structure monoid [class] (A : Type) extends semigroup A, has_one A :=
+(right_id : ∀a, mul a one = a) (left_id : ∀a, mul one a = a)
+
+-- We can suppress := and :: when we are not declaring any new field.
+structure comm_monoid [class] (A : Type) extends monoid A renaming mul→add, comm_semigroup A
+
+structure group [class] (A : Type) extends monoid A, has_inv A :=
+(is_inv : ∀ a, mul a (inv a) = one)
+
+structure abelian_group [class] (A : Type) extends group A renaming mul→add, comm_monoid A
+
+structure ring [class] (A : Type)
+  extends abelian_group A renaming
+    assoc→add.assoc
+    comm→add.comm
+    one→zero
+    right_id→add.right_id
+    left_id→add.left_id
+    inv→uminus
+    is_inv→uminus_is_inv,
+  monoid A renaming
+    assoc→mul.assoc
+    right_id→mul.right_id
+    left_id→mul.left_id
+:=
+(dist_left  : ∀ a b c, mul a (add b c) = add (mul a b) (mul a c))
+(dist_right : ∀ a b c, mul (add a b) c = add (mul a c) (mul b c))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\nstructure has_mul [class] (A : Type) :=\n(mul : A → A → A)\n\nstructure has_one [class] (A : Type) :=\n(one : A)\n\nstructure has_inv [class] (A : Type) :=\n(inv : A → A)\n\ninfixl `*`   := has_mul.mul\npostfix `⁻¹` := has_inv.inv\nnotation 1   := has_one.one\n\nstructure semigroup [class] (A : Type) extends has_mul A :=\n(assoc : ∀ a b c, mul (mul a b) c = mul a (mul b c))\n\nstructure comm_semigroup [class] (A : Type) extends semigroup A renaming mul→add:=\n(comm : ∀a b, add a b = add b a)\n\ninfixl `+` := comm_semigroup.add\n\nstructure monoid [class] (A : Type) extends semigroup A, has_one A :=\n(right_id : ∀a, mul a one = a) (left_id : ∀a, mul one a = a)\n\n-- We can suppress := and :: when we are not declaring any new field.\nstructure comm_monoid [class] (A : Type) extends monoid A renaming mul→add, comm_semigroup A\n\nstructure group [class] (A : Type) extends monoid A, has_inv A :=\n(is_inv : ∀ a, mul a (inv a) = one)\n\nstructure abelian_group [class] (A : Type) extends group A renaming mul→add, comm_monoid A\n\nstructure ring [class] (A : Type)\n  extends abelian_group A renaming\n    assoc→add.assoc\n    comm→add.comm\n    one→zero\n    right_id→add.right_id\n    left_id→add.left_id\n    inv→uminus\n    is_inv→uminus_is_inv,\n  monoid A renaming\n    assoc→mul.assoc\n    right_id→mul.right_id\n    left_id→mul.left_id\n:=\n(dist_left  : ∀ a b c, mul a (add b c) = add (mul a b) (mul a c))\n(dist_right : ∀ a b c, mul (add a b) c = add (mul a c) (mul b c))\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: <a href="http://leodemoura.github.io">Leonardo de Moura</a></p>
+<p class="date">Created: 2014-11-05 Wed 23:14</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

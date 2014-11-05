@@ -1,0 +1,1269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Example</title>
+<!-- 2014-11-05 Wed 23:14 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="[[http://leodemoura.github.io][Leonardo de Moura]]Leonardo de Moura" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel='stylesheet' href='css/tutorial.css'>
+<link rel='stylesheet' href='css/jquery-ui.css'>
+<script src='js/platform.js'></script>
+<script src='js/jquery-1.10.2.js'></script>
+<script src='js/jquery-ui.js'></script>
+<link rel='import' href='juicy-ace-editor.html'>
+<link rel='stylesheet' href='css/code.css'>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Example</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Lean Tutorial</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Lean is an automatic and interactive theorem prover. It can be used to
+create specifications, build mathematical libraries, and solve
+constraints. In this tutorial, we introduce basic concepts, the logic
+used in Lean, and the main commands.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Getting started</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We can use Lean in interactive or batch mode.
+The following example just displays the message `hello world`.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">print "hello world"
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('print "hello world"\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+All we have to do to run your first example is to call the <code>lean</code> executable
+with the name of the text file that contains the command above.
+If you saved the above command in the file <code>hello.lean</code>, then you just have
+to execute
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/shell" readonly="true">lean hello.lean
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('lean hello.lean\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+As a more complex example, the next example defines a function that doubles
+the input value.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+-- defines the double function
+definition double (x : nat) := x + x
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n-- defines the double function\ndefinition double (x : nat) := x + x\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Basics</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+We can also view Lean as a suite of tools for evaluating and processing
+expressions representing terms, definitions, and theorems.
+</p>
+
+<p>
+Every expression has a unique type in Lean. The command <code>check</code> returns the
+type of a given expression.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+check true
+check and
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\ncheck true\ncheck and\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The last command returns <code>Prop → Prop → Prop</code>. That is, the type of
+<code>and</code> is a function that takes two <span class="underline">propositions</span> and return a
+proposition, <code>Prop</code> is the type of propositions.
+</p>
+
+<p>
+The command <code>import</code> loads existing libraries and extensions.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+check nat.ge
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\ncheck nat.ge\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We say <code>nat.ge</code> is a hierarchical name comprised of two parts: <code>nat</code> and <code>ge</code>.
+</p>
+
+<p>
+The command <code>open</code> creates aliases based on a given prefix. The
+command also imports notation, hints, and other features. We will
+discuss its other applications later. Regarding aliases,
+the following command creates aliases for all objects starting with
+<code>nat</code>, and imports all notations defined in this namespace.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+check ge -- display the type of nat.ge
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\ncheck ge -- display the type of nat.ge\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The command <code>constant</code> assigns a type to an identifier. The following command postulates/assumes
+that <code>n</code>, <code>m</code> and <code>o</code> have type <code>nat</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+constant n : nat
+constant m : nat
+constant o : nat
+-- The command 'open nat' also imported the notation defined at the namespace 'nat'
+check n + m
+check n ≤ m
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\nconstant n : nat\nconstant m : nat\nconstant o : nat\n-- The command 'open nat' also imported the notation defined at the namespace 'nat'\ncheck n + m\ncheck n ≤ m\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The command <code>constants n m o : nat</code> can be used as a shorthand for the three commands above.
+</p>
+
+<p>
+In Lean, proofs are also expressions, and all functionality provided for manipulating
+expressions is also available for manipulating proofs. For example, <code>eq.refl n</code> is a proof
+for <code>n = n</code>. In Lean, <code>eq.refl</code> is the reflexivity theorem.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+constant n : nat
+check eq.refl n
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\nconstant n : nat\ncheck eq.refl n\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The command <code>axiom</code> postulates that a given proposition holds.
+The following commands postulate two axioms <code>Ax1</code> and <code>Ax2</code> that state that <code>n = m</code> and
+<code>m = o</code>. <code>Ax1</code> and <code>Ax2</code> are not just names. For example, <code>eq.trans Ax1 Ax2</code> is a proof that
+<code>n = o</code>, where <code>eq.trans</code> is the transitivity theorem.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+constants m n o : nat
+axiom Ax1 : n = m
+axiom Ax2 : m = o
+check eq.trans Ax1 Ax2
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\nconstants m n o : nat\naxiom Ax1 : n = m\naxiom Ax2 : m = o\ncheck eq.trans Ax1 Ax2\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The expression <code>eq.trans Ax1 Ax2</code> is just a function application like any other.
+Moreover, in Lean, <span class="underline">propositions are types</span>. Any proposition <code>P</code> can be used
+as a type. The elements of type <code>P</code> can be viewed as the proofs of <code>P</code>.
+Moreover, in Lean, <span class="underline">proof checking is type checking</span>. For example, the Lean type checker
+will reject the type incorrect term <code>eq.trans Ax2 Ax1</code>.
+</p>
+
+<p>
+Because we use <span class="underline">proposition as types</span>, we must support <span class="underline">empty types</span>. For example,
+the type <code>false</code> must be empty, since we don't have a proof for <code>false</code>.
+</p>
+
+<p>
+Most systems based on the <span class="underline">propositions as types</span> paradigm are based on constructive logic.
+In Lean, we support classical and constructive logic. We can load
+<span class="underline">classical axiom</span> by using <code>import classical</code>. When the classical
+extensions are loaded, the <span class="underline">excluded middle</span> is a theorem,
+and <code>em p</code> is a proof for <code>p ∨ ¬ p</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic.axioms.classical
+constant p : Prop
+check em p
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic.axioms.classical\nconstant p : Prop\ncheck em p\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The commands <code>axiom</code> and <code>constant</code> are essentially the same command. We provide both
+just to make Lean files more readable. We encourage users to use <code>axiom</code> only for
+propositions, and <code>constant</code> for everything else.
+</p>
+
+<p>
+Similarly, a theorem is just a definition. The following command defines a new theorem
+called <code>nat_trans3</code>, and then use it to prove something else. In this
+example, <code>eq.symm</code> is the symmetry theorem.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+theorem nat_trans3 (a b c d : nat) (H1 : a = b) (H2 : c = b) (H3 : c = d) : a = d :=
+eq.trans (eq.trans H1 (eq.symm H2)) H3
+
+-- Example using nat_trans3
+constants x y z w : nat
+axiom Hxy : x = y
+axiom Hzy : z = y
+axiom Hzw : z = w
+check nat_trans3 x y z w Hxy Hzy Hzw
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ntheorem nat_trans3 (a b c d : nat) (H1 : a = b) (H2 : c = b) (H3 : c = d) : a = d :=\neq.trans (eq.trans H1 (eq.symm H2)) H3\n\n-- Example using nat_trans3\nconstants x y z w : nat\naxiom Hxy : x = y\naxiom Hzy : z = y\naxiom Hzw : z = w\ncheck nat_trans3 x y z w Hxy Hzy Hzw\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The theorem <code>nat_trans3</code> has 7 parameters, it takes for natural numbers <code>a</code>, <code>b</code>, <code>c</code> and <code>d</code>,
+and three proofs showing that <code>a = b</code>, <code>c = b</code> and <code>c = d</code>, and returns a proof that <code>a = d</code>.
+</p>
+
+<p>
+The theorem <code>nat_trans3</code> is somewhat inconvenient to use because it has 7 parameters.
+However, the first four parameters can be inferred from the last 3. We can use <code>_</code> as a placeholder
+that instructs Lean to synthesize this expression. The synthesis process is based on type inference, and it is
+the most basic form of automation provided by Lean.
+In the example above, we can use <code>check nat_trans3 _ _ _ _ Hxy Hzy Hzw</code>.
+</p>
+
+<p>
+Lean also supports <span class="underline">implicit arguments</span>.
+We mark implicit arguments using curly braces instead of parenthesis.
+In the following example, we define the theorem <code>nat_trans3i</code> using
+implicit arguments.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+theorem nat_trans3i {a b c d : nat} (H1 : a = b) (H2 : c = b) (H3 : c = d) : a = d :=
+eq.trans (eq.trans H1 (eq.symm H2)) H3
+
+-- Example using nat_trans3
+constants x y z w : nat
+axiom Hxy : x = y
+axiom Hzy : z = y
+axiom Hzw : z = w
+check nat_trans3i Hxy Hzy Hzw
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ntheorem nat_trans3i {a b c d : nat} (H1 : a = b) (H2 : c = b) (H3 : c = d) : a = d :=\neq.trans (eq.trans H1 (eq.symm H2)) H3\n\n-- Example using nat_trans3\nconstants x y z w : nat\naxiom Hxy : x = y\naxiom Hzy : z = y\naxiom Hzw : z = w\ncheck nat_trans3i Hxy Hzy Hzw\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+It is identical to <code>nat_trans3</code>, the only difference is the use of curly braces.
+Lean will (try to) infer the implicit arguments. The idea behind implicit arguments
+is quite simple, we are just instructing Lean to automatically insert the placeholders
+<code>_</code> for us.
+</p>
+
+<p>
+Sometimes, Lean will not be able to infer the parameters automatically.
+The annotation <code>@f</code> instructs Lean that we want to provide the
+implicit arguments for <code>f</code> explicitly.
+The theorems <code>eq.refl</code>, <code>eq.trans</code> and <code>eq.symm</code> all have implicit arguments.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+check @eq.refl
+check @eq.symm
+check @eq.trans
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\ncheck @eq.refl\ncheck @eq.symm\ncheck @eq.trans\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can also instruct Lean to display all implicit arguments when it prints expressions.
+This is useful when debugging non-trivial problems.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+constants a b c : nat
+axiom H1 : a = b
+axiom H2 : b = c
+check eq.trans H1 H2
+
+set_option pp.implicit true
+-- Now, Lean will display all implicit arguments
+check eq.trans H1 H2
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\nconstants a b c : nat\naxiom H1 : a = b\naxiom H2 : b = c\ncheck eq.trans H1 H2\n\nset_option pp.implicit true\n-- Now, Lean will display all implicit arguments\ncheck eq.trans H1 H2\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the previous example, the <code>check</code> command stated that <code>eq.trans H1 H2</code>
+has type <code>@eq ℕ a c</code>. The expression <code>a = c</code> is just notational convenience.
+</p>
+
+<p>
+We have seen many occurrences of <code>Type</code>.
+In Lean, the type of <code>nat</code> and <code>Prop</code> is <code>Type</code>.
+What is the type of <code>Type</code>?
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">check Type
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('check Type\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Lean reports <code>Type : Type</code>, is it Lean inconsistent? Now, it is not.
+Internally, Lean maintains a hierarchy of Types. We say each one of
+them <span class="underline">lives</span> in a universe. Lean is universe polymorphic, and by
+default all universes are hidden from the user. Like implicit
+arguments, we can instruct Lean to display the universe levels
+explicitly.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">set_option pp.universes true
+check Type
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('set_option pp.universes true\ncheck Type\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the command above, Lean reports that <code>Type.{l_1}</code> that lives in
+universe <code>l_1</code> has type <code>Type.{succ l_1}</code>. That is, its type lives in
+the universe <code>l_1 + 1</code>.
+</p>
+
+<p>
+Definitions such as <code>eq.refl</code>, <code>eq.symm</code> and <code>eq.trans</code> are all universe
+polymorphic.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+set_option pp.universes true
+check @eq.refl
+check @eq.symm
+check @eq.trans
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nset_option pp.universes true\ncheck @eq.refl\ncheck @eq.symm\ncheck @eq.trans\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Whenever we declare a new constant, Lean automatically infers the
+universe parameters. We can also provide the universe levels
+explicitly.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+
+definition id.{l} {A : Type.{l}} (a : A) : A := a
+
+check id true
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\n\ndefinition id.{l} {A : Type.{l}} (a : A) : A := a\n\ncheck id true\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The universes can be explicitly provided for each constant and <code>Type</code>
+by using the notation <code>.{ ... }</code>. Unlike other systems, Lean does not
+have <span class="underline">universe cumulativity</span>. That is, the type <code>Type.{i}</code> is <b>not</b> an
+element of <code>Type.{j}</code> for <code>j &gt; i</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Propositional logic</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+To manipulate formulas with a richer logical structure, it is important to master the notation Lean uses for building
+composite logical expressions out of basic formulas using <span class="underline">logical connectives</span>. The logical connectives (<code>and</code>, <code>or</code>, <code>not</code>, etc)
+are defined in the file <a href="../../library/standard/logic.lean">logic.lean</a>. This file also defines notational convention for writing formulas
+in a natural way. Here is a table showing the notation for the so called propositional (or Boolean) connectives.
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Ascii</th>
+<th scope="col" class="left">Unicode</th>
+<th scope="col" class="left">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">true</td>
+<td class="left">&#xa0;</td>
+<td class="left">true</td>
+</tr>
+
+<tr>
+<td class="left">false</td>
+<td class="left">&#xa0;</td>
+<td class="left">false</td>
+</tr>
+
+<tr>
+<td class="left">not</td>
+<td class="left">¬</td>
+<td class="left">not</td>
+</tr>
+
+<tr>
+<td class="left">/\</td>
+<td class="left">∧</td>
+<td class="left">and</td>
+</tr>
+
+<tr>
+<td class="left">‌\/</td>
+<td class="left">∨</td>
+<td class="left">or</td>
+</tr>
+
+<tr>
+<td class="left">-&gt;</td>
+<td class="left">→</td>
+<td class="left">implies</td>
+</tr>
+
+<tr>
+<td class="left">&lt;-&gt;</td>
+<td class="left">↔</td>
+<td class="left">iff</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<code>true</code> and <code>false</code> are logical constants to denote the true and false propositions. Logical negation is a unary operator just like
+arithmetical negation on numbers. The other connectives are all binary operators. The meaning of the operators is the usual one.
+The table above makes clear that Lean supports unicode characters. We can use Ascii or/and unicode versions.
+Here is a simple example using the connectives above.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+check p → q → p ∧ q
+check ¬p → p ↔ false
+check p ∨ q → q ∨ p
+-- Ascii version
+check p -&gt; q -&gt; p /\ q
+check not p -&gt; p &lt;-&gt; false
+check p \/ q -&gt; q \/ p
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\ncheck p → q → p ∧ q\ncheck ¬p → p ↔ false\ncheck p ∨ q → q ∨ p\n-- Ascii version\ncheck p -&gt; q -&gt; p /\ q\ncheck not p -&gt; p &lt;-&gt; false\ncheck p \/ q -&gt; q \/ p\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Depending on the platform, Lean uses unicode characters by default when printing expressions. The following commands can be used to
+change this behavior.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+set_option pp.unicode false
+constants p q : Prop
+check p → q → p ∧ q
+set_option pp.unicode true
+check p → q → p ∧ q
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nset_option pp.unicode false\nconstants p q : Prop\ncheck p → q → p ∧ q\nset_option pp.unicode true\ncheck p → q → p ∧ q\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Note that, it may seem that the symbols <code>-&gt;</code> and <code>→</code> are overloaded, and Lean uses them to represent implication and the type
+of functions. Actually, they are not overloaded, they are the same symbols. In Lean, the Proposition <code>p → q</code> expression is also the type
+of the functions that given a proof for <code>p</code>, returns a proof for <code>q</code>. This is very convenient for writing proofs.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+-- Hpq is a function that takes a proof for p and returns a proof for q
+axiom Hpq : p → q
+-- Hq is a proof/certificate for p
+axiom Hp  : p
+-- The expression Hpq Hp is a proof/certificate for q
+check Hpq Hp
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\n-- Hpq is a function that takes a proof for p and returns a proof for q\naxiom Hpq : p → q\n-- Hq is a proof/certificate for p\naxiom Hp  : p\n-- The expression Hpq Hp is a proof/certificate for q\ncheck Hpq Hp\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In composite expressions, the precedences of the various binary
+connectives are in order of the above table, with <code>and</code> being the
+strongest and <code>iff</code> the weakest. For example, <code>a ∧ b → c ∨ d ∧ e</code>
+means <code>(a ∧ b) → (c ∨ (d ∧ e))</code>. All of them are right-associative.
+So, <code>p ∧ q ∧ r</code> means <code>p ∧ (q ∧ r)</code>. The actual precedence and fixity of all
+logical connectives is defined in the Lean
+<a href="../../library/standard/logic.lean">logic definition file</a>.
+Finally, <code>not</code>, <code>and</code>, <code>or</code> and <code>iff</code> are the actual names used when
+defining the Boolean connectives. They can be used as any other function.
+Lean supports <span class="underline">currying</span> <code>and true</code> is a function from <code>Prop</code> to <code>Prop</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Functions</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+There are many variable-binding constructs in mathematics. Lean expresses
+all of them using just one <span class="underline">abstraction</span>, which is a converse operation to
+function application. Given a variable <code>x</code>, a type <code>A</code>, and a term <code>t</code> that
+may or may not contain <code>x</code>, one can construct the so-called <span class="underline">lambda abstraction</span>
+<code>fun x : A, t</code>, or using unicode notation <code>λ x : A, t</code>. Here is some simple
+examples.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+check fun x : nat, x + 1
+check fun x y : nat, x + 2 * y
+check fun x y : Prop, not (x ∧ y)
+check λ x : nat, x + 1
+check λ (x : nat) (p : Prop), x = 0 ∨ p
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ncheck fun x : nat, x + 1\ncheck fun x y : nat, x + 2 * y\ncheck fun x y : Prop, not (x ∧ y)\ncheck λ x : nat, x + 1\ncheck λ (x : nat) (p : Prop), x = 0 ∨ p\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In many cases, Lean can automatically infer the type of the variable. Actually,
+In all examples above, the type can be inferred automatically.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+check fun x, x + 1
+check fun x y, x + 2 * y
+check fun x y, not (x ∧ y)
+check λ x, x + 1
+check λ x p, x = 0 ∨ p
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ncheck fun x, x + 1\ncheck fun x y, x + 2 * y\ncheck fun x y, not (x ∧ y)\ncheck λ x, x + 1\ncheck λ x p, x = 0 ∨ p\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+However, Lean will complain that it cannot infer the type of the
+variable <code>x</code> in <code>fun x, x</code> because any type would work in this example.
+</p>
+
+<p>
+The following example shows how to use lambda abstractions in
+function applications
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+check (fun x y, x + 2 * y) 1
+check (fun x y, x + 2 * y) 1 2
+check (fun x y, not (x ∧ y)) true false
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\ncheck (fun x y, x + 2 * y) 1\ncheck (fun x y, x + 2 * y) 1 2\ncheck (fun x y, not (x ∧ y)) true false\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Lambda abstractions are also used to create proofs for propositions of the form <code>A → B</code>.
+This should be natural since we can "view" <code>A → B</code> as the type of functions that given
+a proof for <code>A</code> returns a proof for <code>B</code>.
+For example, a proof for <code>p → p</code> is just <code>fun H : p, H</code> (the identity function).
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constant p : Prop
+check fun H : p, H
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstant p : Prop\ncheck fun H : p, H\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Definitional equality</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+The command <code>eval t</code> computes a normal form for the term <code>t</code>.
+In Lean, we say two terms are <span class="underline">definitionally equal</span> if the have the same
+normal form. For example, the terms <code>(λ x : nat, x + 1) a</code> and <code>a + 1</code>
+are definitionally equal. The Lean type/proof checker uses the normalizer when
+checking types/proofs. So, we can prove that two definitionally equal terms
+are equal using just <code>eq.refl</code>. Here is a simple example.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+theorem def_eq_th (a : nat) : ((λ x : nat, x + 1) a) = a + 1 := eq.refl (a+1)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ntheorem def_eq_th (a : nat) : ((λ x : nat, x + 1) a) = a + 1 := eq.refl (a+1)\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Provable equality</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+In the previous examples, we have used <code>nat_trans3 x y z w Hxy Hzy Hzw</code>
+to show that <code>x = w</code>. In this case, <code>x</code> and <code>w</code> are not definitionally equal,
+but they are provably equal in the environment that contains <code>nat_trans3</code> and
+axioms <code>Hxy</code>, <code>Hzy</code> and <code>Hzw</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> Proving</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+The Lean standard library contains basic theorems for creating proof terms. The
+basic theorems are useful for creating manual proofs. The are also the
+basic building blocks used by all automated proof engines available in
+Lean. The theorems can be broken into three different categories:
+introduction, elimination, and rewriting. First, we cover the introduction
+and elimination theorems for the basic Boolean connectives.
+</p>
+</div>
+
+<div id="outline-container-sec-1-8-1" class="outline-4">
+<h4 id="sec-1-8-1"><span class="section-number-4">1.8.1</span> And (conjunction)</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+The expression <code>and.intro H1 H2</code> creates a proof for <code>a ∧ b</code> using proofs
+<code>H1 : a</code> and <code>H2 : b</code>. We say <code>and.intro</code> is the <span class="underline">and-introduction</span> operation.
+In the following example we use <code>and.intro</code> for creating a proof for
+<code>p → q → p ∧ q</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+check fun (Hp : p) (Hq : q), and.intro Hp Hq
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\ncheck fun (Hp : p) (Hq : q), and.intro Hp Hq\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The expression <code>and.elim_left H</code> creates a proof <code>a</code> from a proof <code>H : a ∧ b</code>.
+Similarly <code>and.elim_right H</code> is a proof for <code>b</code>. We say they are the <span class="underline">left/right and-eliminators</span>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+-- Proof for p ∧ q → p
+check fun H : p ∧ q, and.elim_left H
+-- Proof for p ∧ q → q
+check fun H : p ∧ q, and.elim_right H
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\n-- Proof for p ∧ q → p\ncheck fun H : p ∧ q, and.elim_left H\n-- Proof for p ∧ q → q\ncheck fun H : p ∧ q, and.elim_right H\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Now, we prove <code>p ∧ q → q ∧ p</code> with the following simple proof term.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+check fun H : p ∧ q, and.intro (and.elim_right H) (and.elim_left H)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\ncheck fun H : p ∧ q, and.intro (and.elim_right H) (and.elim_left H)\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Note that the proof term is very similar to a function that just swaps the
+elements of a pair.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-2" class="outline-4">
+<h4 id="sec-1-8-2"><span class="section-number-4">1.8.2</span> (disjunction)</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<p>
+The expression <code>or.intro_left b H1</code> creates a proof for <code>a ∨ b</code> using a proof <code>H1 : a</code>.
+Similarly, <code>or.intro_right a H2</code> creates a proof for <code>a ∨ b</code> using a proof <code>H2 : b</code>.
+We say they are the <span class="underline">left/right or-introduction</span>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+-- Proof for p → p ∨ q
+check fun H : p, or.intro_left q H
+-- Proof for q → p ∨ q
+check fun H : q, or.intro_right p H
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\n-- Proof for p → p ∨ q\ncheck fun H : p, or.intro_left q H\n-- Proof for q → p ∨ q\ncheck fun H : q, or.intro_right p H\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The or-elimination rule is slightly more complicated. The basic idea is the
+following, we can prove <code>c</code> from <code>a ∨ b</code>, by showing we can prove <code>c</code>
+by assuming <code>a</code> or by assuming <code>b</code>. It is essentially a proof by cases.
+<code>or.elim Hab Hac Hbc</code> takes three arguments <code>Hab : a ∨ b</code>, <code>Hac : a → c</code> and <code>Hbc : b → c</code> and produces a proof for <code>c</code>.
+In the following example, we use <code>or.elim</code> to prove that <code>p v q → q ∨ p</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+check fun H : p ∨ q,
+	 or.elim H
+	    (fun Hp : p, or.intro_right q Hp)
+	    (fun Hq : q, or.intro_left  p Hq)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\ncheck fun H : p ∨ q,\n	 or.elim H\n	    (fun Hp : p, or.intro_right q Hp)\n	    (fun Hq : q, or.intro_left  p Hq)\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In most cases, the first argument of <code>or.intro_right</code> and
+<code>or.intro_left</code> can be inferred automatically by Lean. Moreover, Lean
+provides <code>or.inr</code> and <code>or.inl</code> as shorthands for <code>or.intro_right _</code>
+and <code>or.intro_left _</code>. These two shorthands are extensively used in
+the Lean standard library.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants p q : Prop
+check fun H : p ∨ q,
+	 or.elim H
+	    (fun Hp : p, or.inr Hp)
+	    (fun Hq : q, or.inl Hq)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants p q : Prop\ncheck fun H : p ∨ q,\n	 or.elim H\n	    (fun Hp : p, or.inr Hp)\n	    (fun Hq : q, or.inl Hq)\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-3" class="outline-4">
+<h4 id="sec-1-8-3"><span class="section-number-4">1.8.3</span> Not (negation)</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<p>
+<code>not_intro H</code> produces a proof for <code>¬ a</code> from <code>H : a → false</code>. That is,
+we obtain <code>¬ a</code> if we can derive <code>false</code> from <code>a</code>. The expression
+<code>absurd Ha Hna</code> produces a proof for some <code>b</code> from <code>Ha : a</code> and <code>Hna : ¬ a</code>.
+That is, we can deduce anything if we have <code>a</code> and <code>¬ a</code>.
+We now use <code>not_intro</code> and <code>absurd</code> to produce a proof term for
+<code>(a → b) → ¬b → ¬a</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants a b : Prop
+check fun (Hab : a → b) (Hnb : ¬ b),
+	  not_intro (fun Ha : a, absurd (Hab Ha) Hnb)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants a b : Prop\ncheck fun (Hab : a → b) (Hnb : ¬ b),\n	  not_intro (fun Ha : a, absurd (Hab Ha) Hnb)\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the standard library, <code>not a</code> is actually just an <span class="underline">abbreviation</span>
+for <code>a → false</code>. Thus, we don't really need to use <code>not_intro</code>
+explicitly.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants a b : Prop
+check fun (Hab : a → b) (Hnb : ¬ b),
+	  (fun Ha : a, Hnb (Hab Ha))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants a b : Prop\ncheck fun (Hab : a → b) (Hnb : ¬ b),\n	  (fun Ha : a, Hnb (Hab Ha))\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Now, here is the proof term for <code>¬a → b → (b → a) → c</code>
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants a b c : Prop
+check fun (Hna : ¬ a) (Hb : b) (Hba : b → a),
+	  absurd (Hba Hb) Hna
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants a b c : Prop\ncheck fun (Hna : ¬ a) (Hb : b) (Hba : b → a),\n	  absurd (Hba Hb) Hna\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-4" class="outline-4">
+<h4 id="sec-1-8-4"><span class="section-number-4">1.8.4</span> Iff (if-and-only-if)</h4>
+<div class="outline-text-4" id="text-1-8-4">
+<p>
+The expression <code>iff.intro H1 H2</code> produces a proof for <code>a ↔ b</code> from <code>H1 : a → b</code> and <code>H2 : b → a</code>.
+<code>iff.elim_left H</code> produces a proof for <code>a → b</code> from <code>H : a ↔ b</code>. Similarly,
+<code>iff.elim_right H</code> produces a proof for <code>b → a</code> from <code>H : a ↔ b</code>.
+Here is the proof term for <code>a ∧ b ↔ b ∧ a</code>
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants a b : Prop
+check iff.intro
+	(fun H : a ∧ b, and.intro (and.elim_right H) (and.elim_left H))
+	(fun H : b ∧ a, and.intro (and.elim_right H) (and.elim_left H))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants a b : Prop\ncheck iff.intro\n	(fun H : a ∧ b, and.intro (and.elim_right H) (and.elim_left H))\n	(fun H : b ∧ a, and.intro (and.elim_right H) (and.elim_left H))\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In Lean, we can use <code>assume</code> instead of <code>fun</code> to make proof terms look
+more like proofs found in text books.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+constants a b : Prop
+check iff.intro
+	(assume H : a ∧ b, and.intro (and.elim_right H) (and.elim_left H))
+	(assume H : b ∧ a, and.intro (and.elim_right H) (and.elim_left H))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\nconstants a b : Prop\ncheck iff.intro\n	(assume H : a ∧ b, and.intro (and.elim_right H) (and.elim_left H))\n	(assume H : b ∧ a, and.intro (and.elim_right H) (and.elim_left H))\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-5" class="outline-4">
+<h4 id="sec-1-8-5"><span class="section-number-4">1.8.5</span> True and False</h4>
+<div class="outline-text-4" id="text-1-8-5">
+<p>
+The expression <code>trivial</code> is a proof term for <code>true</code>, and <code>false_elim a H</code>
+produces a proof for <code>a</code> from <code>H : false</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8-6" class="outline-4">
+<h4 id="sec-1-8-6"><span class="section-number-4">1.8.6</span> Rewrite rules</h4>
+<div class="outline-text-4" id="text-1-8-6">
+<p>
+<b>WARNING: We did not port this section to Lean 0.2 yet</b>
+</p>
+
+<p>
+The Lean kernel also contains many theorems that are meant to be used as rewriting/simplification rules.
+The conclusion of these theorems is of the form <code>t = s</code> or <code>t ↔ s</code>. For example, <code>and_id a</code> is proof term for
+<code>a ∧ a ↔ a</code>. The Lean simplifier can use these theorems to automatically create proof terms for us.
+The expression <code>(by simp [rule-set])</code> is similar to <code>_</code>, but it tells Lean to synthesize the proof term using the simplifier
+using the rewrite rule set named <code>[rule-set]</code>. In the following example, we create a simple rewrite rule set
+and use it to prove a theorem that would be quite tedious to prove by hand.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">-- import module that defines several tactics/strategies including "simp"
+import tactic
+-- create a rewrite rule set with name 'simple'
+rewrite_set simple
+-- add some theorems to the rewrite rule set 'simple'
+add_rewrite and_id and_truer and_truel and_comm and.assoc and_left_comm iff_id : simple
+theorem th1 (a b : Bool) : a ∧ b ∧ true ∧ b ∧ true ∧ b ↔ a ∧ b
+:= (by simp simple)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('-- import module that defines several tactics/strategies including "simp"\nimport tactic\n-- create a rewrite rule set with name 'simple'\nrewrite_set simple\n-- add some theorems to the rewrite rule set 'simple'\nadd_rewrite and_id and_truer and_truel and_comm and.assoc and_left_comm iff_id : simple\ntheorem th1 (a b : Bool) : a ∧ b ∧ true ∧ b ∧ true ∧ b ↔ a ∧ b\n:= (by simp simple)\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In Lean, we can combine manual and automated proofs in a natural way. We can manually write the proof
+skeleton and use the <code>by</code> construct to invoke automated proof engines like the simplifier for filling the
+tedious steps. Here is a very simple example.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">theorem th2 (a b : Prop) : a ∧ b ↔ b ∧ a
+:= iff.intro
+     (fun H : a ∧ b, (by simp simple))
+     (fun H : b ∧ a, (by simp simple))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('theorem th2 (a b : Prop) : a ∧ b ↔ b ∧ a\n:= iff.intro\n     (fun H : a ∧ b, (by simp simple))\n     (fun H : b ∧ a, (by simp simple))\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> Dependent functions and quantifiers</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+Lean supports <span class="underline">dependent functions</span>. In type theory, they are also called dependent product types or Pi-types.
+The idea is quite simple, suppose we have a type <code>A : Type</code>, and a family of types <code>B : A → Type</code> which assigns to each <code>a : A</code> a type <code>B a</code>. So a dependent function is a function whose range varies depending on its arguments.
+In Lean, the dependent functions is written as <code>forall a : A, B a</code>,
+<code>Pi a : A, B a</code>, <code>∀ x : A, B a</code>, or <code>Π x : A, B a</code>. We usually use
+<code>forall</code> and <code>∀</code> for propositions, and <code>Pi</code> and <code>Π</code> for everything
+else. In the previous examples, we have seen many examples of
+dependent functions. The theorems <code>eq.refl</code>, <code>eq.trans</code> and <code>eq.symm</code>, and the
+equality are all dependent functions.
+</p>
+
+<p>
+The universal quantifier is just a dependent function.
+In Lean, if we have a family of types <code>B : A → Prop</code>,
+then <code>∀ x : A, B a</code> has type <code>Prop</code>.
+This features complicates the Lean set-theoretic model, but it
+improves usability.
+Several theorem provers have a <code>forall elimination</code> (aka
+instantiation) proof rule.
+In Lean (and other systems based on proposition as types), this rule
+is just function application.
+In the following example we add an axiom stating that <code>f x</code> is <code>0</code>
+forall <code>x</code>.
+Then we instantiate the axiom using function application.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+constant f : nat → nat
+axiom fzero : ∀ x, f x = 0
+check fzero 1
+constant a : nat
+check fzero a
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\nconstant f : nat → nat\naxiom fzero : ∀ x, f x = 0\ncheck fzero 1\nconstant a : nat\ncheck fzero a\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+Since we instantiate quantifiers using function application, it is
+natural to create proof terms for universal quantifiers using lambda
+abstraction. In the following example, we create a proof term showing that for all
+<code>x</code> and <code>y</code>, <code>f x = f y</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+constant f : nat → nat
+axiom fzero : ∀ x, f x = 0
+check λ x y, eq.trans (fzero x) (eq.symm (fzero y))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\nconstant f : nat → nat\naxiom fzero : ∀ x, f x = 0\ncheck λ x y, eq.trans (fzero x) (eq.symm (fzero y))\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can view the proof term above as a simple function or "recipe" for showing that
+<code>f x = f y</code> for any <code>x</code> and <code>y</code>. The function "invokes" <code>fzero</code> for creating
+proof terms for <code>f x = 0</code> and <code>f y = 0</code>. Then, it uses symmetry <code>eq.symm</code> to create
+a proof term for <code>0 = f y</code>. Finally, transitivity is used to combine the proofs
+for <code>f x = 0</code> and <code>0 = f y</code>.
+</p>
+
+<p>
+In Lean, the existential quantifier can be written as <code>exists x : A, B
+x</code> or <code>∃ x : A, B x</code>. Actually both versions are just
+notational convenience for <code>Exists (fun x : A, B x)</code>. That is, the existential quantifier
+is actually a constant defined in the file <code>logic.lean</code>.
+This file also defines the <code>exists_intro</code> and <code>exists_elim</code>.
+To build a proof for <code>∃ x : A, B x</code>, we should provide a term <code>w : A</code> and a proof term <code>Hw : B w</code> to <code>exists_intro</code>.
+We say <code>w</code> is the witness for the existential introduction. In previous examples,
+<code>nat_trans3i Hxy Hzy Hzw</code> was a proof term for <code>x = w</code>. Then, we can create a proof term
+for <code>∃ a : nat, a = w</code> using
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+theorem nat_trans3i {a b c d : nat} (H1 : a = b) (H2 : c = b) (H3 : c = d) : a = d :=
+eq.trans (eq.trans H1 (eq.symm H2)) H3
+
+constants x y z w : nat
+axiom Hxy : x = y
+axiom Hzy : z = y
+axiom Hzw : z = w
+
+theorem ex_a_eq_w : exists a, a = w  := exists_intro x (nat_trans3i Hxy Hzy Hzw)
+check ex_a_eq_w
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ntheorem nat_trans3i {a b c d : nat} (H1 : a = b) (H2 : c = b) (H3 : c = d) : a = d :=\neq.trans (eq.trans H1 (eq.symm H2)) H3\n\nconstants x y z w : nat\naxiom Hxy : x = y\naxiom Hzy : z = y\naxiom Hzw : z = w\n\ntheorem ex_a_eq_w : exists a, a = w  := exists_intro x (nat_trans3i Hxy Hzy Hzw)\ncheck ex_a_eq_w\n');">Try it yourself &raquo;</button></div>
+</div>
+
+
+<p>
+Note that <code>exists_intro</code> also has implicit arguments. For example, Lean has to infer the implicit argument
+<code>P : A → Bool</code>, a predicate (aka function to Prop). This creates complications. For example, suppose
+we have <code>Hg : g 0 0 = 0</code> and we invoke <code>exists_intro 0 Hg</code>. There are different possible values for <code>P</code>.
+Each possible value corresponds to a different theorem: <code>∃ x, g x x = x</code>, <code>∃ x, g x x = 0</code>,
+<code>∃ x, g x 0 = x</code>, etc. Lean uses the context where <code>exists_intro</code> occurs to infer the users intent.
+In the example above, we were trying to prove the theorem <code>∃ a, a = w</code>. So, we are implicitly telling
+Lean how to choose <code>P</code>. In the following example, we demonstrate this issue. We ask Lean to display
+the implicit arguments using the option <code>pp.implicit</code>. We see that each instance of <code>exists_intro 0 Hg</code>
+has different values for the implicit argument <code>P</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+check @exists_intro
+constant g : nat → nat → nat
+axiom Hg : g 0 0 = 0
+theorem gex1 : ∃ x, g x x = x := exists_intro 0 Hg
+theorem gex2 : ∃ x, g x 0 = x := exists_intro 0 Hg
+theorem gex3 : ∃ x, g 0 0 = x := exists_intro 0 Hg
+theorem gex4 : ∃ x, g x x = 0 := exists_intro 0 Hg
+set_option pp.implicit true  -- display implicit arguments
+check gex1
+check gex2
+check gex3
+check gex4
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ncheck @exists_intro\nconstant g : nat → nat → nat\naxiom Hg : g 0 0 = 0\ntheorem gex1 : ∃ x, g x x = x := exists_intro 0 Hg\ntheorem gex2 : ∃ x, g x 0 = x := exists_intro 0 Hg\ntheorem gex3 : ∃ x, g 0 0 = x := exists_intro 0 Hg\ntheorem gex4 : ∃ x, g x x = 0 := exists_intro 0 Hg\nset_option pp.implicit true  -- display implicit arguments\ncheck gex1\ncheck gex2\ncheck gex3\ncheck gex4\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+We can view <code>exists_intro</code> (aka existential introduction) as an information hiding procedure.
+We are "hiding" what is the witness for some fact. The existential elimination performs the opposite
+operation. The <code>exists_elim</code> theorem allows us to prove some proposition <code>B</code> from <code>∃ x : A, B x</code>
+if we can derive <code>B</code> using an "abstract" witness <code>w</code> and a proof term <code>Hw : B w</code>.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import logic
+check @exists_elim
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import logic\ncheck @exists_elim\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+In the following example, we define <code>even a</code> as <code>∃ b, a = 2*b</code>, and then we show that the sum
+of two even numbers is an even number.
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+
+definition even (a : nat) := ∃ b, a = 2*b
+theorem EvenPlusEven {a b : nat} (H1 : even a) (H2 : even b) : even (a + b) :=
+exists_elim H1 (fun (w1 : nat) (Hw1 : a = 2*w1),
+exists_elim H2 (fun (w2 : nat) (Hw2 : b = 2*w2),
+  exists_intro (w1 + w2)
+    (calc a + b  =  2*w1 + b      : {Hw1}
+	    ...  =  2*w1 + 2*w2   : {Hw2}
+	    ...  =  2*(w1 + w2)   : eq.symm !mul.distr_left)))
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\n\ndefinition even (a : nat) := ∃ b, a = 2*b\ntheorem EvenPlusEven {a b : nat} (H1 : even a) (H2 : even b) : even (a + b) :=\nexists_elim H1 (fun (w1 : nat) (Hw1 : a = 2*w1),\nexists_elim H2 (fun (w2 : nat) (Hw2 : b = 2*w2),\n  exists_intro (w1 + w2)\n    (calc a + b  =  2*w1 + b      : {Hw1}\n	    ...  =  2*w1 + 2*w2   : {Hw2}\n	    ...  =  2*(w1 + w2)   : eq.symm !mul.distr_left)))\n');">Try it yourself &raquo;</button></div>
+</div>
+
+<p>
+The example above also uses <a href="./calc.html">calculational proofs</a> to show that <code>a + b = 2*(w1 + w2)</code>.
+The <code>calc</code> construct is just syntax sugar for creating proofs using transitivity and substitution.
+</p>
+
+<p>
+In Lean, we can use <code>obtain _, from _, _</code> as syntax sugar for <code>exists_elim</code>.
+With this macro we can write the example above in a more natural way
+</p>
+
+<div class="org-src-container">
+
+<juicy-ace-editor mode="ace/mode/lean" readonly="true">import data.nat
+open nat
+definition even (a : nat) := ∃ b, a = 2*b
+theorem EvenPlusEven {a b : nat} (H1 : even a) (H2 : even b) : even (a + b) :=
+obtain (w1 : nat) (Hw1 : a = 2*w1), from H1,
+obtain (w2 : nat) (Hw2 : b = 2*w2), from H2,
+  exists_intro (w1 + w2)
+    (calc a + b  =  2*w1 + b      : {Hw1}
+	    ...  =  2*w1 + 2*w2   : {Hw2}
+	    ...  =  2*(w1 + w2)   : eq.symm !mul.distr_left)
+</juicy-ace-editor><div class='no-print' align="left"><button type="button" onclick="invoke_leanjs('import data.nat\nopen nat\ndefinition even (a : nat) := ∃ b, a = 2*b\ntheorem EvenPlusEven {a b : nat} (H1 : even a) (H2 : even b) : even (a + b) :=\nobtain (w1 : nat) (Hw1 : a = 2*w1), from H1,\nobtain (w2 : nat) (Hw2 : b = 2*w2), from H2,\n  exists_intro (w1 + w2)\n    (calc a + b  =  2*w1 + b      : {Hw1}\n	    ...  =  2*w1 + 2*w2   : {Hw2}\n	    ...  =  2*(w1 + w2)   : eq.symm !mul.distr_left)\n');">Try it yourself &raquo;</button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: <a href="http://leodemoura.github.io">Leonardo de Moura</a></p>
+<p class="date">Created: 2014-11-05 Wed 23:14</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
